@@ -35,4 +35,39 @@ Device information should be retrieve using the `Get Device Status (v2)` endpoin
 3. Have it implement one step at a time, then build and test.
 4. Commit after each working step so you can roll back easily.
 
-When changing behavior, update README/architecture docs and add an ADR for significant decisions." Then ask at the end of each feature: "Update the docs for what we just changed.
+When changing behavior, update README/architecture docs and add an ADR for significant decisions. At the end of each feature, ask: "Update the docs for what we just changed."
+
+## Implementation Plan
+
+Status legend: [ ] pending, [~] in progress, [x] done. Update this list as each step completes.
+
+Assumptions:
+- Single project `XioApiExample` targeting .NET 10, BCL only.
+- Endpoints, auth header and WebSocket details must be confirmed from the Postman collection before coding (step 2).
+- The WebSocket payload only identifies the changed device; status is re-fetched and diffed against the cache.
+
+Steps:
+1. [x] Revise `.github/copilot-instructions.md` with conventions, structure and this plan
+2. [ ] Review the Postman collection and record endpoints, auth and WebSocket details in `docs/api-notes.md`
+3. [ ] Create `README.md` skeleton and `docs/architecture.md`
+4. [ ] Add command-line argument parsing and validation
+5. [ ] Add the XIO API client for account name and device list
+6. [ ] Add the in-memory device status store
+7. [ ] Add the Get Device Status (v2) call and models
+8. [ ] Add the console menu for device and data-group selection
+9. [ ] Add the WebSocket listener for update notifications
+10. [ ] Add the status differ and changed-only output
+11. [ ] Add tests for the argument parser and differ
+12. [ ] Update README and add ADRs for key decisions
+
+Open questions / risks:
+- Postman details (base URL, auth scheme, WebSocket handshake, payload schema) are unverified.
+- Status JSON shape is unknown; the differ may need to be `JsonElement`-based.
+- WebSocket reconnect and keep-alive behavior is undocumented.
+- Test framework for the test project (suggested: xUnit).
+
+## Change Log
+
+Record each change to these instructions or to the plan here, newest last.
+
+- Initial plan written into the instructions; step 1 completed. Fixed a stray quote in the General agent Instructions section.
