@@ -1,0 +1,2121 @@
+{
+  "info": {
+    "_postman_id": "5a89cf1f-f2e3-4fa8-87cc-906e7e7e92c5",
+    "name": "Crestron XIO Cloud API",
+    "description": "Crestron XiO Cloud Public API collection based on the official SDK reference at [https://sdkcon78221.crestron.com/sdk/Crestron_XiO_Cloud_SDK/Content/Topics/API-Reference.htm](https://sdkcon78221.crestron.com/sdk/Crestron_XiO_Cloud_SDK/Content/Topics/API-Reference.htm)\n\n**Authentication:** All requests require the `XiO-subscription-key` header (set at collection level using the `{{subscriptionKey}}` variable). Public API access must be enabled by Crestron Support.\n\n**Rate Limits:**\n\n- V1 endpoints: 1 request per 5 minutes\n    \n- V2 endpoints: 3 requests per minute\n    \n\n**Variables needed from a local vault:** `accountId`, `subscriptionKey`\n\nVariables needed from an Environment: `pagenum`, pagesize, `deviceModel`, `groupId`, groupIdSub, `deviceCid`, `deviceCid2`, macAddress, `serialNumber`.\n\nGet Notifications Informations will store the Websocket uri in the variable `ws_address.` Then the Crestron XIO `Cloud Websocket` Collection can use that variable to start a web socket connection and listen to XIO cloud reports",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "9119790",
+    "_collection_link": "https://go.postman.co/collection/9119790-5a89cf1f-f2e3-4fa8-87cc-906e7e7e92c5?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Account",
+      "item": [
+        {
+          "name": "Get Account Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.crestron.io/api/v1/account/accountid/{{vault:accountId}}/account",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "account",
+                "accountid",
+                "{{vault:accountId}}",
+                "account"
+              ]
+            },
+            "description": "This method returns account details. Rate limit: 1 request per 5 minutes (V1)."
+          },
+          "response": [
+            {
+              "name": "Get Account Details",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://api.crestron.io/api/v1/account/accountid/{{vault:accountId}}/account",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "account",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "account"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": "200"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 16 Oct 2026 20:43:38 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "none"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "strict-transport-security",
+                  "value": "max-age=31536000"
+                },
+                {
+                  "key": "x-ms-middleware-request-id",
+                  "value": "a522b1b4-b6d6-4eb5-bd0a-1a2a079de8ff"
+                },
+                {
+                  "key": "request-context",
+                  "value": "appId=cid-v1:246ba1ce-02db-489e-8e74-932ff9dbac86"
+                },
+                {
+                  "key": "x-xss-protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "content-security-policy",
+                  "value": "script-src 'self'"
+                },
+                {
+                  "key": "x-frame-options",
+                  "value": "deny"
+                },
+                {
+                  "key": "x-content-type-options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "expect-ct",
+                  "value": "max-age=604800,enforce"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": \"11111111-bbbb-4444-eeeeeeeeeeeeeeeee\",\n  \"Name\": \"AlvaroYurritaMasters\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Devices",
+      "item": [
+        {
+          "name": "Get Account Devices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.crestron.io/api/v1/device/accountid/{{vault:accountId}}/devices",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "device",
+                "accountid",
+                "{{vault:accountId}}",
+                "devices"
+              ]
+            },
+            "description": "This method returns all devices for the account.\n\n### Variables\n\n`accountId`: **Required**. String that sets the customer account ID that is issued after enabling public API access."
+          },
+          "response": [
+            {
+              "name": "Get Account Devices",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://api.crestron.io/api/v1/device/accountid/{{vault:accountId}}/devices",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "device",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "devices"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": "200"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 16 Oct 2026 21:17:46 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "content-length",
+                  "value": "1018"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "none"
+                },
+                {
+                  "key": "strict-transport-security",
+                  "value": "max-age=31536000"
+                },
+                {
+                  "key": "x-ms-middleware-request-id",
+                  "value": "9a9c2e72-3d77-44e2-a8dc-2990279e4967"
+                },
+                {
+                  "key": "request-context",
+                  "value": "appId=cid-v1:bb540103-2e2d-4888-98b1-d22b2b3f7151"
+                },
+                {
+                  "key": "x-xss-protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "content-security-policy",
+                  "value": "script-src 'self'"
+                },
+                {
+                  "key": "x-frame-options",
+                  "value": "deny"
+                },
+                {
+                  "key": "x-content-type-options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "expect-ct",
+                  "value": "max-age=604800,enforce"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"device-cid\": \"c4-42-68-1f-0f-d4_-1\",\n    \"device-accountid\": \"11111111-bbbb-4444-eeeeeeeeeeeeeeeee\",\n    \"device-groupid\": \"bca30251-4f8e-4a2c-b52f-76805e9fc934\",\n    \"device-model\": \"TS-1070\",\n    \"device-category\": \"TouchPanel\",\n    \"device-manufacturer\": \"Crestron\",\n    \"device-id\": \"@E-c442681f0fd4\",\n    \"device-name\": \"TS70-home\",\n    \"device-builddate\": \"Tue May 26 16:15:25 EDT 2026  (600985)\",\n    \"device-key\": \"No SystemKey Server\",\n    \"user-device-name\": \"TS70-home\",\n    \"serial-number\": \"2219JBH19666\",\n    \"device-status\": \"Online\",\n    \"device-ipaddress\": \"192.168.0.111\"\n  },\n  {\n    \"device-cid\": \"00-10-7f-9c-c8-61_-1\",\n    \"device-accountid\": \"11111111-bbbb-4444-eeeeeeeeeeeeeeeee\",\n    \"device-groupid\": \"bca30251-4f8e-4a2c-b52f-76805e9fc934\",\n    \"device-model\": \"CP4\",\n    \"device-category\": \"Control System\",\n    \"device-manufacturer\": \"Crestron\",\n    \"device-id\": \"@E-00107f9cc861\",\n    \"device-name\": \"cp4-home\",\n    \"device-builddate\": \"Jun 18 2026  (602276)\",\n    \"device-key\": \"21132209f219bf1b2d5bb800c8e018fb\",\n    \"user-device-name\": \"cp4-home\",\n    \"serial-number\": \"X140063\",\n    \"device-status\": \"Online\",\n    \"device-ipaddress\": \"192.168.0.120\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Device Status (V1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.crestron.io/api/v1/device/accountid/{{vault:accountId}}/devicecid/{{deviceCid}}/status",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "device",
+                "accountid",
+                "{{vault:accountId}}",
+                "devicecid",
+                "{{deviceCid}}",
+                "status"
+              ]
+            },
+            "description": "Returns full device status. Rate limit: 1 request per 5 minutes (V1).\n\n### Variables\n\n`accountId`: **Required**. String that sets the customer account ID that is issued after enabling public API access.\n\n`deviceCid`: **Required**. The CID of the device (for example, \"00-10-7f-9a-f6-7e_-1\")"
+          },
+          "response": [
+            {
+              "name": "Get Device Status (V1)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://api.crestron.io/api/v1/device/accountid/{{vault:accountId}}/devicecid/{{deviceCid}}/status",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "device",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "devicecid",
+                    "{{deviceCid}}",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": "200"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 16 Oct 2026 21:17:49 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "none"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "strict-transport-security",
+                  "value": "max-age=31536000"
+                },
+                {
+                  "key": "x-ms-middleware-request-id",
+                  "value": "f4df0d25-0d61-45f7-8b97-a0b29e78b377"
+                },
+                {
+                  "key": "request-context",
+                  "value": "appId=cid-v1:bb540103-2e2d-4888-98b1-d22b2b3f7151"
+                },
+                {
+                  "key": "x-xss-protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "content-security-policy",
+                  "value": "script-src 'self'"
+                },
+                {
+                  "key": "x-frame-options",
+                  "value": "deny"
+                },
+                {
+                  "key": "x-content-type-options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "expect-ct",
+                  "value": "max-age=604800,enforce"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"device\": {\n    \"device-cid\": \"00-10-7f-9c-c8-61_-1\",\n    \"device-accountid\": \"11111111-bbbb-4444-eeeeeeeeeeeeeeeee\",\n    \"device-groupid\": \"bca30251-4f8e-4a2c-b52f-76805e9fc934\",\n    \"device-model\": \"CP4\",\n    \"device-category\": \"Control System\",\n    \"device-manufacturer\": \"Crestron\",\n    \"device-id\": \"@E-00107f9cc861\",\n    \"device-name\": \"cp4-home\",\n    \"device-builddate\": \"Jun 18 2026  (602276)\",\n    \"device-key\": \"21132209f219bf1b2d5bb800c8e018fb\",\n    \"user-device-name\": \"cp4-home\",\n    \"serial-number\": \"X140063\",\n    \"call-status\": null,\n    \"displayed-input\": null,\n    \"occupancy-status\": null,\n    \"firmware-version\": \"2.8006.00322\",\n    \"sleep-status\": null,\n    \"skype-presence\": null,\n    \"cloudownedsettings-maximumcapacity\": null,\n    \"hardware-type\": null,\n    \"license-type\": null\n  },\n  \"audio\": {\n    \"mic-mute-status\": null,\n    \"mute-status\": null,\n    \"volume\": null\n  },\n  \"connections\": {\n    \"bluetooth\": null,\n    \"bluetooth-pairing\": null,\n    \"display-power\": null,\n    \"hdmi-in\": null,\n    \"hdmi-out\": null,\n    \"usb-in\": null,\n    \"dm-in\": null\n  },\n  \"hdmi-input\": {\n    \"hdmi-input-resolution\": null,\n    \"hdmi-input-interlaced-detected\": null,\n    \"hdmi-input-is-source-hdcp-active\": null,\n    \"hdmi-input-source-hdcp-state\": null,\n    \"hdmi-input-horizontal-resolution\": null,\n    \"hdmi-input-vertical-resolution\": null,\n    \"hdmi-input-frames-per-second\": null,\n    \"hdmi-input-aspect-ratio\": null,\n    \"hdmi-input-audio-format\": null,\n    \"hdmi-input-audio-channels\": null,\n    \"hdmi-sync-detected\": null\n  },\n  \"hdmi-output\": {\n    \"hdmi-output-resolution\": null,\n    \"hdmi-output-interlaced-detected\": null,\n    \"hdmi-output-hdcp-disabled-by-hdcp\": null,\n    \"hdmi-output-horizontal-resolution\": null,\n    \"hdmi-output-vertical-resolution\": null,\n    \"hdmi-output-frames-per-second\": null,\n    \"hdmi-output-aspect-ratio\": null,\n    \"hdmi-output-audio-format\": null,\n    \"hdmi-output-audio-channels\": null,\n    \"hdmi-output-is-sink-connected\": null,\n    \"hdmi-output-manufacturer-string\": null,\n    \"hdmi-output-serial-number-string\": null\n  },\n  \"network\": {\n    \"status-host-name\": \"cp4-home\",\n    \"status-domain-name\": \"jenandal.com\",\n    \"nic-1-dns-servers\": [\n      \"192.168.0.60(DHCP)\",\n      \"8.8.8.8(DHCP)\"\n    ],\n    \"nic-1-dhcp-enabled\": true,\n    \"nic-1-ip-address\": \"192.168.0.120\",\n    \"nic-1-subnet-mask\": \"255.255.255.0\",\n    \"nic-1-def-router\": \"192.168.0.100\",\n    \"nic-1-mac-address\": \"00.10.7f.9c.c8.61\",\n    \"nic-1-link\": true,\n    \"usbToEthernet-dhcp\": null,\n    \"usbToEthernet-dynamic-ip-address\": null,\n    \"usbToEthernet-dynamic-subnet-mask\": null,\n    \"usbToEthernet-dynamic-def-router-3\": null,\n    \"usbToEthernet-static-ip-address\": null,\n    \"usbToEthernet-static-subnet-mask\": null,\n    \"usbToEthernet-static-def-router-3\": null,\n    \"usbToEthernet.linkActive\": null,\n    \"usbToEthernet.macAddress\": null\n  },\n  \"services\": {\n    \"calendar-connection\": null,\n    \"fusion-connection-type\": null,\n    \"fusion-status\": null,\n    \"skype-connection\": null\n  },\n  \"Conferencing\": {\n    \"sip-server-status\": null,\n    \"static-sip-qos\": null,\n    \"static-voice-qos\": null,\n    \"lldp-voice-vlan-id\": null,\n    \"lldp-voice-vlan-priority\": null,\n    \"vlan-ip-address\": null\n  },\n  \"DMInput\": {\n    \"dm-input-resolution\": null,\n    \"hdmi-input-interlaced-detected\": null,\n    \"dm-input-is-source-hdcp-active\": null,\n    \"dm-input-source-hdcp-state\": null,\n    \"dm-input-horizontal-resolution\": null,\n    \"dm-input-vertical-resolution\": null,\n    \"dm-input-frames-per-second\": null,\n    \"dm-input-aspect-ratio\": null,\n    \"dm-input-audio-format\": null,\n    \"dm-input-audio-channels\": null\n  },\n  \"audioVideo\": {\n    \"miracast-isEnabled\": null,\n    \"miracast-defaultwindowsexperience\": null,\n    \"miracast-wifidirectMode\": null,\n    \"hdmi-disabled-by-hdcp\": null,\n    \"airboard-isenabled\": null,\n    \"airboard-connection-info\": null,\n    \"airboard-pairing-status\": null,\n    \"wifidonglestatus\": null\n  },\n  \"usb\": {\n    \"statusTab.label.usbConnected\": null,\n    \"statusTab.label.usbType\": null\n  },\n  \"roomScheduling\": {\n    \"statusTab.label.roomSchedulingRoomStatus\": null,\n    \"statusTab.label.roomSchedulingCalendarSync\": null,\n    \"statusTab.label.roomSchedulingFusionStatus\": null\n  },\n  \"schedule\": {\n    \"statusTab.scheduling.enableModernAuth\": null,\n    \"statusTab.schedule.schedulingSource\": null,\n    \"statusTab.label.schedulingConnectionStatus\": null,\n    \"statusTab.schedule.connectionStatusMessage\": null,\n    \"statusTab.schedule.occupancyStatus\": null,\n    \"statusTab.schedule.occupancySource\": null,\n    \"statusTab.schedule.pushRegistrationStatus\": null,\n    \"statusTab.schedule.googleRegistrationStatus\": null,\n    \"statusTab.schedule.googleRegistrationUrl\": null,\n    \"statusTab.schedule.googleRegistrationCode\": null,\n    \"statusTab.schedule.exchangeRegistrationStatus\": null,\n    \"statusTab.schedule.exchangeRegistrationUrl\": null,\n    \"statusTab.schedule.exchangeRegistrationCode\": null,\n    \"statusTab.schedule.currentMeeting.scheduled\": null,\n    \"statusTab.schedule.currentMeetingSubject\": null,\n    \"statusTab.schedule.currentMeetingEndTime\": null,\n    \"statusTab.schedule.currentMeetingRecurring\": null,\n    \"statusTab.schedule.currentMeetingOrganizer\": null,\n    \"statusTab-schedule-attendees\": null,\n    \"statusTab.schedule.currentMeetingCheckInStatus\": null,\n    \"statusTab.schedule.currentMeetingMeetingPrivacyLevel\": null\n  },\n  \"categoryccs-cam-usb-f-400\": {\n    \"ccs-serial-number\": null,\n    \"ccs-camera-version\": null,\n    \"ccs-software-version\": null,\n    \"ccs-upgrade-version\": null,\n    \"ccs-room-occupancy\": null,\n    \"ccs-genius-framing-enabled\": null,\n    \"ccs-occupant-count-enabled\": null\n  },\n  \"categoryccs-camera\": {\n    \"ccs-serial-number\": null,\n    \"ccs-camera-version\": null,\n    \"ccs-software-version\": null,\n    \"ccs-upgrade-version\": null,\n    \"ccs-room-occupancy\": null,\n    \"ccs-genius-framing-enabled\": null,\n    \"ccs-occupant-count-enabled\": null\n  },\n  \"security\": {\n    \"statusTab-encryptConnection\": null\n  },\n  \"Peripherals\": {\n    \"features-conference-microphone\": null,\n    \"features-conference-speaker\": null,\n    \"features-default-speaker\": null,\n    \"features-camera\": null,\n    \"features-front-room-display\": null,\n    \"features-hdmiingest\": null,\n    \"ucprsettings-isConnected\": null,\n    \"category-model\": null,\n    \"category-ucpr-serialnumber\": null,\n    \"category-ucpr-firmwareversion\": null,\n    \"category-ucpr-usbA\": null,\n    \"category-ucpr-usbC\": null,\n    \"category-ucpr-hdmi\": null,\n    \"category-ucpr-byod\": null,\n    \"isConnected\": null,\n    \"category-serialnumber\": null,\n    \"category-firmwareversion\": null,\n    \"category-usbA\": null,\n    \"category-usbC\": null,\n    \"category-hdmi\": null,\n    \"category-byod\": null\n  },\n  \"logitech\": {\n    \"logitech-product-model\": null,\n    \"logitech-product-name\": null,\n    \"logitech-serial-number\": null,\n    \"logitech-firmware-version\": null,\n    \"hidden-firmwareUpdate\": null,\n    \"logitech-sync-software-version\": null,\n    \"logitech-status\": null,\n    \"logitech-rightsight\": null,\n    \"ConnectedToIoTHub\": true\n  },\n  \"Applications\": {\n    \"application-mode-status\": null,\n    \"teams-video-address\": null\n  },\n  \"Hosts-Devices\": {\n    \"Hosts\": null,\n    \"Devices\": null\n  },\n  \"Programs\": {\n    \"Programs-LicensedCount\": 10,\n    \"Programs-SlaveMode\": false,\n    \"Programs-MasterHostname\": \"\",\n    \"Programs-MasterIPID\": \"\",\n    \"Programs-SlaveModeStatus\": \"\",\n    \"Programs-ProgramNumber1-FriendlyName\": \"XIO_Cloud\",\n    \"Programs-ProgramNumber1-Status\": \"Started\",\n    \"Programs-ProgramNumber1-ProgramFileName\": \"Home Test.smw\",\n    \"Programs-ProgramNumber1-SystemName\": \"XIOCloud\",\n    \"Programs-ProgramNumber1-Programmer\": \"AY\",\n    \"Programs-ProgramNumber1-CompiledOn\": \"9/7/2026 8:23 AM\",\n    \"Programs-ProgramNumber1-CompilerVersion\": \"3.03\",\n    \"Programs-ProgramNumber1-SymbolLibraryVersion\": \"1243\",\n    \"Programs-ProgramNumber1-IoLibraryVersion\": \"1243\",\n    \"Programs-ProgramNumber1-IopVersion\": \"4.1.76\",\n    \"Programs-ProgramNumber1-CrestronDatabaseVersion\": \"228.55.001.00\",\n    \"Programs-ProgramNumber1-ProgrammingEnvironment\": \"SIMPL Windows v4.3200.02\",\n    \"Programs-ProgramNumber1-TargetDevice\": \"CP4\",\n    \"Programs-ProgramNumber1-ConfigurationVersion\": \"22\",\n    \"Programs-ProgramNumber1-Include4Version\": \"2.21.274\",\n    \"Programs-ProgramNumber2-FriendlyName\": \"XioCloudSpaceCSharp\",\n    \"Programs-ProgramNumber2-Status\": \"Started\",\n    \"Programs-ProgramNumber2-ProgramFileName\": \"XioCloudSpaceCSharp.dll\",\n    \"Programs-ProgramNumber2-SystemName\": null,\n    \"Programs-ProgramNumber2-Programmer\": null,\n    \"Programs-ProgramNumber2-CompiledOn\": \"10/06/2026 03:26:31\",\n    \"Programs-ProgramNumber2-CompilerVersion\": \"1.0.0.0\",\n    \"Programs-ProgramNumber2-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber2-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber2-IopVersion\": null,\n    \"Programs-ProgramNumber2-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber2-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber2-TargetDevice\": \"CP4\",\n    \"Programs-ProgramNumber2-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber2-Include4Version\": \"2.22.15\",\n    \"Programs-ProgramNumber3-FriendlyName\": null,\n    \"Programs-ProgramNumber3-Status\": \"Stopped\",\n    \"Programs-ProgramNumber3-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber3-SystemName\": null,\n    \"Programs-ProgramNumber3-Programmer\": null,\n    \"Programs-ProgramNumber3-CompiledOn\": null,\n    \"Programs-ProgramNumber3-CompilerVersion\": null,\n    \"Programs-ProgramNumber3-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber3-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber3-IopVersion\": null,\n    \"Programs-ProgramNumber3-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber3-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber3-TargetDevice\": null,\n    \"Programs-ProgramNumber3-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber3-Include4Version\": null,\n    \"Programs-ProgramNumber4-FriendlyName\": null,\n    \"Programs-ProgramNumber4-Status\": \"Stopped\",\n    \"Programs-ProgramNumber4-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber4-SystemName\": null,\n    \"Programs-ProgramNumber4-Programmer\": null,\n    \"Programs-ProgramNumber4-CompiledOn\": null,\n    \"Programs-ProgramNumber4-CompilerVersion\": null,\n    \"Programs-ProgramNumber4-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber4-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber4-IopVersion\": null,\n    \"Programs-ProgramNumber4-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber4-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber4-TargetDevice\": null,\n    \"Programs-ProgramNumber4-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber4-Include4Version\": null,\n    \"Programs-ProgramNumber5-FriendlyName\": null,\n    \"Programs-ProgramNumber5-Status\": \"Stopped\",\n    \"Programs-ProgramNumber5-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber5-SystemName\": null,\n    \"Programs-ProgramNumber5-Programmer\": null,\n    \"Programs-ProgramNumber5-CompiledOn\": null,\n    \"Programs-ProgramNumber5-CompilerVersion\": null,\n    \"Programs-ProgramNumber5-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber5-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber5-IopVersion\": null,\n    \"Programs-ProgramNumber5-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber5-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber5-TargetDevice\": null,\n    \"Programs-ProgramNumber5-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber5-Include4Version\": null,\n    \"Programs-ProgramNumber6-FriendlyName\": null,\n    \"Programs-ProgramNumber6-Status\": \"Stopped\",\n    \"Programs-ProgramNumber6-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber6-SystemName\": null,\n    \"Programs-ProgramNumber6-Programmer\": null,\n    \"Programs-ProgramNumber6-CompiledOn\": null,\n    \"Programs-ProgramNumber6-CompilerVersion\": null,\n    \"Programs-ProgramNumber6-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber6-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber6-IopVersion\": null,\n    \"Programs-ProgramNumber6-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber6-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber6-TargetDevice\": null,\n    \"Programs-ProgramNumber6-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber6-Include4Version\": null,\n    \"Programs-ProgramNumber7-FriendlyName\": null,\n    \"Programs-ProgramNumber7-Status\": \"Stopped\",\n    \"Programs-ProgramNumber7-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber7-SystemName\": null,\n    \"Programs-ProgramNumber7-Programmer\": null,\n    \"Programs-ProgramNumber7-CompiledOn\": null,\n    \"Programs-ProgramNumber7-CompilerVersion\": null,\n    \"Programs-ProgramNumber7-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber7-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber7-IopVersion\": null,\n    \"Programs-ProgramNumber7-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber7-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber7-TargetDevice\": null,\n    \"Programs-ProgramNumber7-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber7-Include4Version\": null,\n    \"Programs-ProgramNumber8-FriendlyName\": null,\n    \"Programs-ProgramNumber8-Status\": \"Stopped\",\n    \"Programs-ProgramNumber8-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber8-SystemName\": null,\n    \"Programs-ProgramNumber8-Programmer\": null,\n    \"Programs-ProgramNumber8-CompiledOn\": null,\n    \"Programs-ProgramNumber8-CompilerVersion\": null,\n    \"Programs-ProgramNumber8-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber8-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber8-IopVersion\": null,\n    \"Programs-ProgramNumber8-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber8-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber8-TargetDevice\": null,\n    \"Programs-ProgramNumber8-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber8-Include4Version\": null,\n    \"Programs-ProgramNumber9-FriendlyName\": null,\n    \"Programs-ProgramNumber9-Status\": \"Stopped\",\n    \"Programs-ProgramNumber9-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber9-SystemName\": null,\n    \"Programs-ProgramNumber9-Programmer\": null,\n    \"Programs-ProgramNumber9-CompiledOn\": null,\n    \"Programs-ProgramNumber9-CompilerVersion\": null,\n    \"Programs-ProgramNumber9-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber9-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber9-IopVersion\": null,\n    \"Programs-ProgramNumber9-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber9-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber9-TargetDevice\": null,\n    \"Programs-ProgramNumber9-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber9-Include4Version\": null,\n    \"Programs-ProgramNumber10-FriendlyName\": null,\n    \"Programs-ProgramNumber10-Status\": \"Stopped\",\n    \"Programs-ProgramNumber10-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber10-SystemName\": null,\n    \"Programs-ProgramNumber10-Programmer\": null,\n    \"Programs-ProgramNumber10-CompiledOn\": null,\n    \"Programs-ProgramNumber10-CompilerVersion\": null,\n    \"Programs-ProgramNumber10-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber10-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber10-IopVersion\": null,\n    \"Programs-ProgramNumber10-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber10-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber10-TargetDevice\": null,\n    \"Programs-ProgramNumber10-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber10-Include4Version\": null\n  },\n  \"AVFramework\": {\n    \"avframework\": false,\n    \"avframework-version\": \"7.0400.0002\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Device Status (V2)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.crestron.io/api/v2/device/accountid/{{vault:accountId}}/devicecid/{{deviceCid}}/status",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "device",
+                "accountid",
+                "{{vault:accountId}}",
+                "devicecid",
+                "{{deviceCid}}",
+                "status"
+              ]
+            },
+            "description": "This method returns all of the device status fields for a chosen device. The V2 version of this method is the same as the V1 version, but also includes a device-status parameter that shows whether the device is currently online or offline.\n\n### Variables\n\n`accountId`: **Required**. String that sets the customer account ID that is issued after enabling public API access.\n\n`deviceCid`: **Required**. The CID of the device (for example, \"00-10-7f-9a-f6-7e_-1\")"
+          },
+          "response": [
+            {
+              "name": "Get Device Status (V2)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://api.crestron.io/api/v2/device/accountid/{{vault:accountId}}/devicecid/{{deviceCid}}/status",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "device",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "devicecid",
+                    "{{deviceCid}}",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": "200"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 16 Oct 2026 21:17:52 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "content-length",
+                  "value": "13597"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "none"
+                },
+                {
+                  "key": "strict-transport-security",
+                  "value": "max-age=31536000"
+                },
+                {
+                  "key": "x-ms-middleware-request-id",
+                  "value": "4021c466-1103-4b7d-83f4-92c120f5a967"
+                },
+                {
+                  "key": "request-context",
+                  "value": "appId=cid-v1:bb540103-2e2d-4888-98b1-d22b2b3f7151"
+                },
+                {
+                  "key": "x-xss-protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "content-security-policy",
+                  "value": "script-src 'self'"
+                },
+                {
+                  "key": "x-frame-options",
+                  "value": "deny"
+                },
+                {
+                  "key": "x-content-type-options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "expect-ct",
+                  "value": "max-age=604800,enforce"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"device\": {\n    \"device-cid\": \"00-10-7f-9c-c8-61_-1\",\n    \"device-accountid\": \"11111111-bbbb-4444-eeeeeeeeeeeeeeeee\",\n    \"device-groupid\": \"bca30251-4f8e-4a2c-b52f-76805e9fc934\",\n    \"device-model\": \"CP4\",\n    \"device-category\": \"Control System\",\n    \"device-manufacturer\": \"Crestron\",\n    \"device-id\": \"@E-00107f9cc861\",\n    \"device-name\": \"cp4-home\",\n    \"device-builddate\": \"Jun 18 2026  (602276)\",\n    \"device-key\": \"21132209f219bf1b2d5bb800c8e018fb\",\n    \"user-device-name\": \"cp4-home\",\n    \"serial-number\": \"X140063\",\n    \"call-status\": null,\n    \"displayed-input\": null,\n    \"occupancy-status\": null,\n    \"firmware-version\": \"2.8006.00322\",\n    \"sleep-status\": null,\n    \"skype-presence\": null,\n    \"cloudownedsettings-maximumcapacity\": null,\n    \"hardware-type\": null,\n    \"license-type\": null,\n    \"device-status\": \"Online\"\n  },\n  \"audio\": {\n    \"mic-mute-status\": null,\n    \"mute-status\": null,\n    \"volume\": null\n  },\n  \"connections\": {\n    \"bluetooth\": null,\n    \"bluetooth-pairing\": null,\n    \"display-power\": null,\n    \"hdmi-in\": null,\n    \"hdmi-out\": null,\n    \"usb-in\": null,\n    \"dm-in\": null\n  },\n  \"hdmi-input\": {\n    \"hdmi-input-resolution\": null,\n    \"hdmi-input-interlaced-detected\": null,\n    \"hdmi-input-is-source-hdcp-active\": null,\n    \"hdmi-input-source-hdcp-state\": null,\n    \"hdmi-input-horizontal-resolution\": null,\n    \"hdmi-input-vertical-resolution\": null,\n    \"hdmi-input-frames-per-second\": null,\n    \"hdmi-input-aspect-ratio\": null,\n    \"hdmi-input-audio-format\": null,\n    \"hdmi-input-audio-channels\": null,\n    \"hdmi-sync-detected\": null\n  },\n  \"hdmi-output\": {\n    \"hdmi-output-resolution\": null,\n    \"hdmi-output-interlaced-detected\": null,\n    \"hdmi-output-hdcp-disabled-by-hdcp\": null,\n    \"hdmi-output-horizontal-resolution\": null,\n    \"hdmi-output-vertical-resolution\": null,\n    \"hdmi-output-frames-per-second\": null,\n    \"hdmi-output-aspect-ratio\": null,\n    \"hdmi-output-audio-format\": null,\n    \"hdmi-output-audio-channels\": null,\n    \"hdmi-output-is-sink-connected\": null,\n    \"hdmi-output-manufacturer-string\": null,\n    \"hdmi-output-serial-number-string\": null\n  },\n  \"network\": {\n    \"status-host-name\": \"cp4-home\",\n    \"status-domain-name\": \"jenandal.com\",\n    \"nic-1-dns-servers\": [\n      \"192.168.0.60(DHCP)\",\n      \"8.8.8.8(DHCP)\"\n    ],\n    \"nic-1-dhcp-enabled\": true,\n    \"nic-1-ip-address\": \"192.168.0.120\",\n    \"nic-1-subnet-mask\": \"255.255.255.0\",\n    \"nic-1-def-router\": \"192.168.0.100\",\n    \"nic-1-mac-address\": \"00.10.7f.9c.c8.61\",\n    \"nic-1-link\": true,\n    \"usbToEthernet-dhcp\": null,\n    \"usbToEthernet-dynamic-ip-address\": null,\n    \"usbToEthernet-dynamic-subnet-mask\": null,\n    \"usbToEthernet-dynamic-def-router-3\": null,\n    \"usbToEthernet-static-ip-address\": null,\n    \"usbToEthernet-static-subnet-mask\": null,\n    \"usbToEthernet-static-def-router-3\": null,\n    \"usbToEthernet.linkActive\": null,\n    \"usbToEthernet.macAddress\": null\n  },\n  \"services\": {\n    \"calendar-connection\": null,\n    \"fusion-connection-type\": null,\n    \"fusion-status\": null,\n    \"skype-connection\": null\n  },\n  \"Conferencing\": {\n    \"sip-server-status\": null,\n    \"static-sip-qos\": null,\n    \"static-voice-qos\": null,\n    \"lldp-voice-vlan-id\": null,\n    \"lldp-voice-vlan-priority\": null,\n    \"vlan-ip-address\": null\n  },\n  \"DMInput\": {\n    \"dm-input-resolution\": null,\n    \"hdmi-input-interlaced-detected\": null,\n    \"dm-input-is-source-hdcp-active\": null,\n    \"dm-input-source-hdcp-state\": null,\n    \"dm-input-horizontal-resolution\": null,\n    \"dm-input-vertical-resolution\": null,\n    \"dm-input-frames-per-second\": null,\n    \"dm-input-aspect-ratio\": null,\n    \"dm-input-audio-format\": null,\n    \"dm-input-audio-channels\": null\n  },\n  \"audioVideo\": {\n    \"miracast-isEnabled\": null,\n    \"miracast-defaultwindowsexperience\": null,\n    \"miracast-wifidirectMode\": null,\n    \"hdmi-disabled-by-hdcp\": null,\n    \"airboard-isenabled\": null,\n    \"airboard-connection-info\": null,\n    \"airboard-pairing-status\": null,\n    \"wifidonglestatus\": null\n  },\n  \"usb\": {\n    \"statusTab.label.usbConnected\": null,\n    \"statusTab.label.usbType\": null\n  },\n  \"roomScheduling\": {\n    \"statusTab.label.roomSchedulingRoomStatus\": null,\n    \"statusTab.label.roomSchedulingCalendarSync\": null,\n    \"statusTab.label.roomSchedulingFusionStatus\": null\n  },\n  \"schedule\": {\n    \"statusTab.scheduling.enableModernAuth\": null,\n    \"statusTab.schedule.schedulingSource\": null,\n    \"statusTab.label.schedulingConnectionStatus\": null,\n    \"statusTab.schedule.connectionStatusMessage\": null,\n    \"statusTab.schedule.occupancyStatus\": null,\n    \"statusTab.schedule.occupancySource\": null,\n    \"statusTab.schedule.pushRegistrationStatus\": null,\n    \"statusTab.schedule.googleRegistrationStatus\": null,\n    \"statusTab.schedule.googleRegistrationUrl\": null,\n    \"statusTab.schedule.googleRegistrationCode\": null,\n    \"statusTab.schedule.exchangeRegistrationStatus\": null,\n    \"statusTab.schedule.exchangeRegistrationUrl\": null,\n    \"statusTab.schedule.exchangeRegistrationCode\": null,\n    \"statusTab.schedule.currentMeeting.scheduled\": null,\n    \"statusTab.schedule.currentMeetingSubject\": null,\n    \"statusTab.schedule.currentMeetingEndTime\": null,\n    \"statusTab.schedule.currentMeetingRecurring\": null,\n    \"statusTab.schedule.currentMeetingOrganizer\": null,\n    \"statusTab-schedule-attendees\": null,\n    \"statusTab.schedule.currentMeetingCheckInStatus\": null,\n    \"statusTab.schedule.currentMeetingMeetingPrivacyLevel\": null\n  },\n  \"categoryccs-cam-usb-f-400\": {\n    \"ccs-serial-number\": null,\n    \"ccs-camera-version\": null,\n    \"ccs-software-version\": null,\n    \"ccs-upgrade-version\": null,\n    \"ccs-room-occupancy\": null,\n    \"ccs-genius-framing-enabled\": null,\n    \"ccs-occupant-count-enabled\": null\n  },\n  \"categoryccs-camera\": {\n    \"ccs-serial-number\": null,\n    \"ccs-camera-version\": null,\n    \"ccs-software-version\": null,\n    \"ccs-upgrade-version\": null,\n    \"ccs-room-occupancy\": null,\n    \"ccs-genius-framing-enabled\": null,\n    \"ccs-occupant-count-enabled\": null\n  },\n  \"security\": {\n    \"statusTab-encryptConnection\": null\n  },\n  \"Peripherals\": {\n    \"features-conference-microphone\": null,\n    \"features-conference-speaker\": null,\n    \"features-default-speaker\": null,\n    \"features-camera\": null,\n    \"features-front-room-display\": null,\n    \"features-hdmiingest\": null,\n    \"ucprsettings-isConnected\": null,\n    \"category-model\": null,\n    \"category-ucpr-serialnumber\": null,\n    \"category-ucpr-firmwareversion\": null,\n    \"category-ucpr-usbA\": null,\n    \"category-ucpr-usbC\": null,\n    \"category-ucpr-hdmi\": null,\n    \"category-ucpr-byod\": null,\n    \"isConnected\": null,\n    \"category-serialnumber\": null,\n    \"category-firmwareversion\": null,\n    \"category-usbA\": null,\n    \"category-usbC\": null,\n    \"category-hdmi\": null,\n    \"category-byod\": null\n  },\n  \"logitech\": {\n    \"logitech-product-model\": null,\n    \"logitech-product-name\": null,\n    \"logitech-serial-number\": null,\n    \"logitech-firmware-version\": null,\n    \"hidden-firmwareUpdate\": null,\n    \"logitech-sync-software-version\": null,\n    \"logitech-status\": null,\n    \"logitech-rightsight\": null,\n    \"ConnectedToIoTHub\": true\n  },\n  \"Applications\": {\n    \"application-mode-status\": null,\n    \"teams-video-address\": null\n  },\n  \"Hosts-Devices\": {\n    \"Hosts\": null,\n    \"Devices\": null\n  },\n  \"Programs\": {\n    \"Programs-LicensedCount\": 10,\n    \"Programs-SlaveMode\": false,\n    \"Programs-MasterHostname\": \"\",\n    \"Programs-MasterIPID\": \"\",\n    \"Programs-SlaveModeStatus\": \"\",\n    \"Programs-ProgramNumber1-FriendlyName\": \"XIO_Cloud\",\n    \"Programs-ProgramNumber1-Status\": \"Started\",\n    \"Programs-ProgramNumber1-ProgramFileName\": \"Home Test.smw\",\n    \"Programs-ProgramNumber1-SystemName\": \"XIOCloud\",\n    \"Programs-ProgramNumber1-Programmer\": \"AY\",\n    \"Programs-ProgramNumber1-CompiledOn\": \"9/7/2026 8:23 AM\",\n    \"Programs-ProgramNumber1-CompilerVersion\": \"3.03\",\n    \"Programs-ProgramNumber1-SymbolLibraryVersion\": \"1243\",\n    \"Programs-ProgramNumber1-IoLibraryVersion\": \"1243\",\n    \"Programs-ProgramNumber1-IopVersion\": \"4.1.76\",\n    \"Programs-ProgramNumber1-CrestronDatabaseVersion\": \"228.55.001.00\",\n    \"Programs-ProgramNumber1-ProgrammingEnvironment\": \"SIMPL Windows v4.3200.02\",\n    \"Programs-ProgramNumber1-TargetDevice\": \"CP4\",\n    \"Programs-ProgramNumber1-ConfigurationVersion\": \"22\",\n    \"Programs-ProgramNumber1-Include4Version\": \"2.21.274\",\n    \"Programs-ProgramNumber2-FriendlyName\": \"XioCloudSpaceCSharp\",\n    \"Programs-ProgramNumber2-Status\": \"Started\",\n    \"Programs-ProgramNumber2-ProgramFileName\": \"XioCloudSpaceCSharp.dll\",\n    \"Programs-ProgramNumber2-SystemName\": null,\n    \"Programs-ProgramNumber2-Programmer\": null,\n    \"Programs-ProgramNumber2-CompiledOn\": \"10/06/2026 03:26:31\",\n    \"Programs-ProgramNumber2-CompilerVersion\": \"1.0.0.0\",\n    \"Programs-ProgramNumber2-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber2-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber2-IopVersion\": null,\n    \"Programs-ProgramNumber2-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber2-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber2-TargetDevice\": \"CP4\",\n    \"Programs-ProgramNumber2-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber2-Include4Version\": \"2.22.15\",\n    \"Programs-ProgramNumber3-FriendlyName\": null,\n    \"Programs-ProgramNumber3-Status\": \"Stopped\",\n    \"Programs-ProgramNumber3-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber3-SystemName\": null,\n    \"Programs-ProgramNumber3-Programmer\": null,\n    \"Programs-ProgramNumber3-CompiledOn\": null,\n    \"Programs-ProgramNumber3-CompilerVersion\": null,\n    \"Programs-ProgramNumber3-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber3-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber3-IopVersion\": null,\n    \"Programs-ProgramNumber3-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber3-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber3-TargetDevice\": null,\n    \"Programs-ProgramNumber3-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber3-Include4Version\": null,\n    \"Programs-ProgramNumber4-FriendlyName\": null,\n    \"Programs-ProgramNumber4-Status\": \"Stopped\",\n    \"Programs-ProgramNumber4-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber4-SystemName\": null,\n    \"Programs-ProgramNumber4-Programmer\": null,\n    \"Programs-ProgramNumber4-CompiledOn\": null,\n    \"Programs-ProgramNumber4-CompilerVersion\": null,\n    \"Programs-ProgramNumber4-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber4-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber4-IopVersion\": null,\n    \"Programs-ProgramNumber4-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber4-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber4-TargetDevice\": null,\n    \"Programs-ProgramNumber4-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber4-Include4Version\": null,\n    \"Programs-ProgramNumber5-FriendlyName\": null,\n    \"Programs-ProgramNumber5-Status\": \"Stopped\",\n    \"Programs-ProgramNumber5-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber5-SystemName\": null,\n    \"Programs-ProgramNumber5-Programmer\": null,\n    \"Programs-ProgramNumber5-CompiledOn\": null,\n    \"Programs-ProgramNumber5-CompilerVersion\": null,\n    \"Programs-ProgramNumber5-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber5-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber5-IopVersion\": null,\n    \"Programs-ProgramNumber5-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber5-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber5-TargetDevice\": null,\n    \"Programs-ProgramNumber5-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber5-Include4Version\": null,\n    \"Programs-ProgramNumber6-FriendlyName\": null,\n    \"Programs-ProgramNumber6-Status\": \"Stopped\",\n    \"Programs-ProgramNumber6-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber6-SystemName\": null,\n    \"Programs-ProgramNumber6-Programmer\": null,\n    \"Programs-ProgramNumber6-CompiledOn\": null,\n    \"Programs-ProgramNumber6-CompilerVersion\": null,\n    \"Programs-ProgramNumber6-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber6-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber6-IopVersion\": null,\n    \"Programs-ProgramNumber6-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber6-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber6-TargetDevice\": null,\n    \"Programs-ProgramNumber6-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber6-Include4Version\": null,\n    \"Programs-ProgramNumber7-FriendlyName\": null,\n    \"Programs-ProgramNumber7-Status\": \"Stopped\",\n    \"Programs-ProgramNumber7-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber7-SystemName\": null,\n    \"Programs-ProgramNumber7-Programmer\": null,\n    \"Programs-ProgramNumber7-CompiledOn\": null,\n    \"Programs-ProgramNumber7-CompilerVersion\": null,\n    \"Programs-ProgramNumber7-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber7-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber7-IopVersion\": null,\n    \"Programs-ProgramNumber7-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber7-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber7-TargetDevice\": null,\n    \"Programs-ProgramNumber7-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber7-Include4Version\": null,\n    \"Programs-ProgramNumber8-FriendlyName\": null,\n    \"Programs-ProgramNumber8-Status\": \"Stopped\",\n    \"Programs-ProgramNumber8-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber8-SystemName\": null,\n    \"Programs-ProgramNumber8-Programmer\": null,\n    \"Programs-ProgramNumber8-CompiledOn\": null,\n    \"Programs-ProgramNumber8-CompilerVersion\": null,\n    \"Programs-ProgramNumber8-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber8-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber8-IopVersion\": null,\n    \"Programs-ProgramNumber8-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber8-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber8-TargetDevice\": null,\n    \"Programs-ProgramNumber8-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber8-Include4Version\": null,\n    \"Programs-ProgramNumber9-FriendlyName\": null,\n    \"Programs-ProgramNumber9-Status\": \"Stopped\",\n    \"Programs-ProgramNumber9-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber9-SystemName\": null,\n    \"Programs-ProgramNumber9-Programmer\": null,\n    \"Programs-ProgramNumber9-CompiledOn\": null,\n    \"Programs-ProgramNumber9-CompilerVersion\": null,\n    \"Programs-ProgramNumber9-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber9-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber9-IopVersion\": null,\n    \"Programs-ProgramNumber9-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber9-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber9-TargetDevice\": null,\n    \"Programs-ProgramNumber9-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber9-Include4Version\": null,\n    \"Programs-ProgramNumber10-FriendlyName\": null,\n    \"Programs-ProgramNumber10-Status\": \"Stopped\",\n    \"Programs-ProgramNumber10-ProgramFileName\": \"No Program Loaded\",\n    \"Programs-ProgramNumber10-SystemName\": null,\n    \"Programs-ProgramNumber10-Programmer\": null,\n    \"Programs-ProgramNumber10-CompiledOn\": null,\n    \"Programs-ProgramNumber10-CompilerVersion\": null,\n    \"Programs-ProgramNumber10-SymbolLibraryVersion\": null,\n    \"Programs-ProgramNumber10-IoLibraryVersion\": null,\n    \"Programs-ProgramNumber10-IopVersion\": null,\n    \"Programs-ProgramNumber10-CrestronDatabaseVersion\": null,\n    \"Programs-ProgramNumber10-ProgrammingEnvironment\": null,\n    \"Programs-ProgramNumber10-TargetDevice\": null,\n    \"Programs-ProgramNumber10-ConfigurationVersion\": null,\n    \"Programs-ProgramNumber10-Include4Version\": null\n  },\n  \"AVFramework\": {\n    \"avframework\": false,\n    \"avframework-version\": \"7.0400.0002\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Device Status (Multiple Devices)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DeviceIds\": [\n    \"{{deviceCid}}\",\n    \"{{deviceCid2}}\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.crestron.io/api/v2/device/accountid/{{vault:accountId}}/specificstatus",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "device",
+                "accountid",
+                "{{vault:accountId}}",
+                "specificstatus"
+              ]
+            },
+            "description": "This method returns all of the device status fields for up to 20 devices.\n\nA DeviceIds request parameter must be issued that contains an array of unique device CIDs as shown in the following example body request.\n\n**NOTE**: If the request contains more than 20 device CIDs, the request will be rejected with a 400 status code (\"Request device limit exceeded, maximum 20 devices can support!\"). If no body is provided with the request, the request will be rejected with a 400 status code (\"Request devices are empty\"). If the request contains any incorrect CIDs, these will be skipped and reported in the MissingDevices response parameter.\n\n### Variables\n\n`accountId`: **Required**. String that sets the customer account ID that is issued after enabling public API access."
+          },
+          "response": [
+            {
+              "name": "Get Device Status (Multiple Devices)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceIds\": [\n    \"{{deviceCid}}\",\n    \"{{deviceCid2}}\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://api.crestron.io/api/v2/device/accountid/{{vault:accountId}}/specificstatus",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "device",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "specificstatus"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": "200"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 16 Oct 2026 21:17:56 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "none"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "strict-transport-security",
+                  "value": "max-age=31536000"
+                },
+                {
+                  "key": "x-ms-middleware-request-id",
+                  "value": "3b83d505-0a81-4162-ac2d-c899f1587a23"
+                },
+                {
+                  "key": "request-context",
+                  "value": "appId=cid-v1:246ba1ce-02db-489e-8e74-932ff9dbac86"
+                },
+                {
+                  "key": "x-xss-protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "content-security-policy",
+                  "value": "script-src 'self'"
+                },
+                {
+                  "key": "x-frame-options",
+                  "value": "deny"
+                },
+                {
+                  "key": "x-content-type-options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "expect-ct",
+                  "value": "max-age=604800,enforce"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"Devices\": [\n    {\n      \"device\": {\n        \"device-cid\": \"c4-42-68-1f-0f-d4_-1\",\n        \"device-accountid\": \"11111111-bbbb-4444-eeeeeeeeeeeeeeeee\",\n        \"device-groupid\": \"bca30251-4f8e-4a2c-b52f-76805e9fc934\",\n        \"device-model\": \"TS-1070\",\n        \"device-category\": \"TouchPanel\",\n        \"device-manufacturer\": \"Crestron\",\n        \"device-id\": \"@E-c442681f0fd4\",\n        \"device-name\": \"TS70-home\",\n        \"device-builddate\": \"Tue May 26 16:15:25 EDT 2026  (600985)\",\n        \"device-key\": \"No SystemKey Server\",\n        \"user-device-name\": \"TS70-home\",\n        \"serial-number\": \"2219JBH19666\",\n        \"call-status\": null,\n        \"displayed-input\": null,\n        \"occupancy-status\": null,\n        \"firmware-version\": \"3.003.0021\",\n        \"sleep-status\": null,\n        \"skype-presence\": null,\n        \"cloudownedsettings-maximumcapacity\": null,\n        \"hardware-type\": null,\n        \"license-type\": null\n      },\n      \"audio\": {\n        \"mic-mute-status\": null,\n        \"mute-status\": null,\n        \"volume\": null\n      },\n      \"connections\": {\n        \"bluetooth\": null,\n        \"bluetooth-pairing\": null,\n        \"display-power\": null,\n        \"hdmi-in\": null,\n        \"hdmi-out\": null,\n        \"usb-in\": null,\n        \"dm-in\": null\n      },\n      \"hdmi-input\": {\n        \"hdmi-input-resolution\": null,\n        \"hdmi-input-interlaced-detected\": null,\n        \"hdmi-input-is-source-hdcp-active\": null,\n        \"hdmi-input-source-hdcp-state\": null,\n        \"hdmi-input-horizontal-resolution\": null,\n        \"hdmi-input-vertical-resolution\": null,\n        \"hdmi-input-frames-per-second\": null,\n        \"hdmi-input-aspect-ratio\": null,\n        \"hdmi-input-audio-format\": null,\n        \"hdmi-input-audio-channels\": null,\n        \"hdmi-sync-detected\": null\n      },\n      \"hdmi-output\": {\n        \"hdmi-output-resolution\": null,\n        \"hdmi-output-interlaced-detected\": null,\n        \"hdmi-output-hdcp-disabled-by-hdcp\": null,\n        \"hdmi-output-horizontal-resolution\": null,\n        \"hdmi-output-vertical-resolution\": null,\n        \"hdmi-output-frames-per-second\": null,\n        \"hdmi-output-aspect-ratio\": null,\n        \"hdmi-output-audio-format\": null,\n        \"hdmi-output-audio-channels\": null,\n        \"hdmi-output-is-sink-connected\": null,\n        \"hdmi-output-manufacturer-string\": null,\n        \"hdmi-output-serial-number-string\": null\n      },\n      \"network\": {\n        \"status-host-name\": \"TS70-home\",\n        \"nic-1-primary-dns_status\": \"192.168.0.60(DHCP)\",\n        \"nic-1-secondary-dns_status\": \"8.8.8.8(DHCP)\",\n        \"status-domain-name\": \"jenandal.com\",\n        \"nic-1-dhcp\": true,\n        \"nic-1-ip-address\": \"192.168.0.111\",\n        \"nic-1-subnet-mask\": \"255.255.255.0\",\n        \"nic-1-def-router\": \"192.168.0.100\",\n        \"nic-1-linkActive\": true,\n        \"nic-1-mac-address\": \"c4.42.68.1f.0f.d4\",\n        \"nic-2-domain-name\": \"jenandal.com\",\n        \"nic-2-dhcp\": true,\n        \"nic-2-ip-address\": \"0.0.0.0\",\n        \"nic-2-subnet-mask\": \"0.0.0.0\",\n        \"nic-2-def-router\": \"0.0.0.0\",\n        \"nic-2-linkActive\": false,\n        \"nic-2-mac-address\": \"c4.42.68.1f.0f.d3\"\n      },\n      \"services\": {\n        \"calendar-connection\": null,\n        \"fusion-connection-type\": null,\n        \"fusion-status\": null,\n        \"skype-connection\": null\n      },\n      \"Conferencing\": {\n        \"sip-server-status\": null,\n        \"static-sip-qos\": null,\n        \"static-voice-qos\": null,\n        \"lldp-voice-vlan-id\": null,\n        \"lldp-voice-vlan-priority\": null,\n        \"vlan-ip-address\": null\n      },\n      \"DMInput\": {\n        \"dm-input-resolution\": null,\n        \"hdmi-input-interlaced-detected\": null,\n        \"dm-input-is-source-hdcp-active\": null,\n        \"dm-input-source-hdcp-state\": null,\n        \"dm-input-horizontal-resolution\": null,\n        \"dm-input-vertical-resolution\": null,\n        \"dm-input-frames-per-second\": null,\n        \"dm-input-aspect-ratio\": null,\n        \"dm-input-audio-format\": null,\n        \"dm-input-audio-channels\": null\n      },\n      \"audioVideo\": {\n        \"miracast-isEnabled\": null,\n        \"miracast-defaultwindowsexperience\": null,\n        \"miracast-wifidirectMode\": null,\n        \"hdmi-disabled-by-hdcp\": null,\n        \"airboard-isenabled\": null,\n        \"airboard-connection-info\": null,\n        \"airboard-pairing-status\": null,\n        \"wifidonglestatus\": null\n      },\n      \"usb\": {\n        \"statusTab.label.usbConnected\": false,\n        \"statusTab.label.usbType\": \"\"\n      },\n      \"roomScheduling\": {\n        \"statusTab.label.roomSchedulingRoomStatus\": null,\n        \"statusTab.label.roomSchedulingCalendarSync\": null,\n        \"statusTab.label.roomSchedulingFusionStatus\": null\n      },\n      \"schedule\": {\n        \"statusTab.scheduling.enableModernAuth\": null,\n        \"statusTab.schedule.schedulingSource\": null,\n        \"statusTab.label.schedulingConnectionStatus\": null,\n        \"statusTab.schedule.connectionStatusMessage\": null,\n        \"statusTab.schedule.occupancyStatus\": null,\n        \"statusTab.schedule.occupancySource\": null,\n        \"statusTab.schedule.pushRegistrationStatus\": null,\n        \"statusTab.schedule.googleRegistrationStatus\": null,\n        \"statusTab.schedule.googleRegistrationUrl\": null,\n        \"statusTab.schedule.googleRegistrationCode\": null,\n        \"statusTab.schedule.exchangeRegistrationStatus\": null,\n        \"statusTab.schedule.exchangeRegistrationUrl\": null,\n        \"statusTab.schedule.exchangeRegistrationCode\": null,\n        \"statusTab.schedule.currentMeeting.scheduled\": null,\n        \"statusTab.schedule.currentMeetingSubject\": null,\n        \"statusTab.schedule.currentMeetingEndTime\": null,\n        \"statusTab.schedule.currentMeetingRecurring\": null,\n        \"statusTab.schedule.currentMeetingOrganizer\": null,\n        \"statusTab-schedule-attendees\": null,\n        \"statusTab.schedule.currentMeetingCheckInStatus\": null,\n        \"statusTab.schedule.currentMeetingMeetingPrivacyLevel\": null\n      },\n      \"categoryccs-cam-usb-f-400\": {\n        \"ccs-serial-number\": null,\n        \"ccs-camera-version\": null,\n        \"ccs-software-version\": null,\n        \"ccs-upgrade-version\": null,\n        \"ccs-room-occupancy\": null,\n        \"ccs-genius-framing-enabled\": null,\n        \"ccs-occupant-count-enabled\": null\n      },\n      \"categoryccs-camera\": {\n        \"ccs-serial-number\": null,\n        \"ccs-camera-version\": null,\n        \"ccs-software-version\": null,\n        \"ccs-upgrade-version\": null,\n        \"ccs-room-occupancy\": null,\n        \"ccs-genius-framing-enabled\": null,\n        \"ccs-occupant-count-enabled\": null\n      },\n      \"security\": {\n        \"statusTab-encryptConnection\": false\n      },\n      \"Peripherals\": {\n        \"features-conference-microphone\": null,\n        \"features-conference-speaker\": null,\n        \"features-default-speaker\": null,\n        \"features-camera\": null,\n        \"features-front-room-display\": null,\n        \"features-hdmiingest\": null,\n        \"ucprsettings-isConnected\": null,\n        \"category-model\": null,\n        \"category-ucpr-serialnumber\": null,\n        \"category-ucpr-firmwareversion\": null,\n        \"category-ucpr-usbA\": null,\n        \"category-ucpr-usbC\": null,\n        \"category-ucpr-hdmi\": null,\n        \"category-ucpr-byod\": null,\n        \"isConnected\": null,\n        \"category-serialnumber\": null,\n        \"category-firmwareversion\": null,\n        \"category-usbA\": null,\n        \"category-usbC\": null,\n        \"category-hdmi\": null,\n        \"category-byod\": null\n      },\n      \"logitech\": {\n        \"logitech-product-model\": null,\n        \"logitech-product-name\": null,\n        \"logitech-serial-number\": null,\n        \"logitech-firmware-version\": null,\n        \"hidden-firmwareUpdate\": null,\n        \"logitech-sync-software-version\": null,\n        \"logitech-status\": null,\n        \"logitech-rightsight\": null,\n        \"ConnectedToIoTHub\": \"Online\"\n      },\n      \"Applications\": {\n        \"application-mode-status\": \"User\",\n        \"teams-video-address\": null\n      },\n      \"Hosts-Devices\": {\n        \"Hosts\": null,\n        \"Devices\": null\n      },\n      \"Device Pairing\": {\n        \"pairing-status\": null\n      },\n      \"Occupancy\": {\n        \"statusOccupied\": null,\n        \"statusTimeOut\": null\n      },\n      \"display\": {\n        \"statusTab.label.displayStatus\": \"On\"\n      },\n      \"snmp-configuration\": {\n        \"snmp-enabled\": false,\n        \"snmp-allow-all\": false,\n        \"snmp-trap-enabled\": true,\n        \"snmp-table\": null\n      }\n    },\n    {\n      \"device\": {\n        \"device-cid\": \"00-10-7f-9c-c8-61_-1\",\n        \"device-accountid\": \"11111111-bbbb-4444-eeeeeeeeeeeeeeeee\",\n        \"device-groupid\": \"bca30251-4f8e-4a2c-b52f-76805e9fc934\",\n        \"device-model\": \"CP4\",\n        \"device-category\": \"Control System\",\n        \"device-manufacturer\": \"Crestron\",\n        \"device-id\": \"@E-00107f9cc861\",\n        \"device-name\": \"cp4-home\",\n        \"device-builddate\": \"Jun 18 2026  (602276)\",\n        \"device-key\": \"21132209f219bf1b2d5bb800c8e018fb\",\n        \"user-device-name\": \"cp4-home\",\n        \"serial-number\": \"X140063\",\n        \"call-status\": null,\n        \"displayed-input\": null,\n        \"occupancy-status\": null,\n        \"firmware-version\": \"2.8006.00322\",\n        \"sleep-status\": null,\n        \"skype-presence\": null,\n        \"cloudownedsettings-maximumcapacity\": null,\n        \"hardware-type\": null,\n        \"license-type\": null\n      },\n      \"audio\": {\n        \"mic-mute-status\": null,\n        \"mute-status\": null,\n        \"volume\": null\n      },\n      \"connections\": {\n        \"bluetooth\": null,\n        \"bluetooth-pairing\": null,\n        \"display-power\": null,\n        \"hdmi-in\": null,\n        \"hdmi-out\": null,\n        \"usb-in\": null,\n        \"dm-in\": null\n      },\n      \"hdmi-input\": {\n        \"hdmi-input-resolution\": null,\n        \"hdmi-input-interlaced-detected\": null,\n        \"hdmi-input-is-source-hdcp-active\": null,\n        \"hdmi-input-source-hdcp-state\": null,\n        \"hdmi-input-horizontal-resolution\": null,\n        \"hdmi-input-vertical-resolution\": null,\n        \"hdmi-input-frames-per-second\": null,\n        \"hdmi-input-aspect-ratio\": null,\n        \"hdmi-input-audio-format\": null,\n        \"hdmi-input-audio-channels\": null,\n        \"hdmi-sync-detected\": null\n      },\n      \"hdmi-output\": {\n        \"hdmi-output-resolution\": null,\n        \"hdmi-output-interlaced-detected\": null,\n        \"hdmi-output-hdcp-disabled-by-hdcp\": null,\n        \"hdmi-output-horizontal-resolution\": null,\n        \"hdmi-output-vertical-resolution\": null,\n        \"hdmi-output-frames-per-second\": null,\n        \"hdmi-output-aspect-ratio\": null,\n        \"hdmi-output-audio-format\": null,\n        \"hdmi-output-audio-channels\": null,\n        \"hdmi-output-is-sink-connected\": null,\n        \"hdmi-output-manufacturer-string\": null,\n        \"hdmi-output-serial-number-string\": null\n      },\n      \"network\": {\n        \"status-host-name\": \"cp4-home\",\n        \"status-domain-name\": \"jenandal.com\",\n        \"nic-1-dns-servers\": [\n          \"192.168.0.60(DHCP)\",\n          \"8.8.8.8(DHCP)\"\n        ],\n        \"nic-1-dhcp-enabled\": true,\n        \"nic-1-ip-address\": \"192.168.0.120\",\n        \"nic-1-subnet-mask\": \"255.255.255.0\",\n        \"nic-1-def-router\": \"192.168.0.100\",\n        \"nic-1-mac-address\": \"00.10.7f.9c.c8.61\",\n        \"nic-1-link\": true,\n        \"usbToEthernet-dhcp\": null,\n        \"usbToEthernet-dynamic-ip-address\": null,\n        \"usbToEthernet-dynamic-subnet-mask\": null,\n        \"usbToEthernet-dynamic-def-router-3\": null,\n        \"usbToEthernet-static-ip-address\": null,\n        \"usbToEthernet-static-subnet-mask\": null,\n        \"usbToEthernet-static-def-router-3\": null,\n        \"usbToEthernet.linkActive\": null,\n        \"usbToEthernet.macAddress\": null\n      },\n      \"services\": {\n        \"calendar-connection\": null,\n        \"fusion-connection-type\": null,\n        \"fusion-status\": null,\n        \"skype-connection\": null\n      },\n      \"Conferencing\": {\n        \"sip-server-status\": null,\n        \"static-sip-qos\": null,\n        \"static-voice-qos\": null,\n        \"lldp-voice-vlan-id\": null,\n        \"lldp-voice-vlan-priority\": null,\n        \"vlan-ip-address\": null\n      },\n      \"DMInput\": {\n        \"dm-input-resolution\": null,\n        \"hdmi-input-interlaced-detected\": null,\n        \"dm-input-is-source-hdcp-active\": null,\n        \"dm-input-source-hdcp-state\": null,\n        \"dm-input-horizontal-resolution\": null,\n        \"dm-input-vertical-resolution\": null,\n        \"dm-input-frames-per-second\": null,\n        \"dm-input-aspect-ratio\": null,\n        \"dm-input-audio-format\": null,\n        \"dm-input-audio-channels\": null\n      },\n      \"audioVideo\": {\n        \"miracast-isEnabled\": null,\n        \"miracast-defaultwindowsexperience\": null,\n        \"miracast-wifidirectMode\": null,\n        \"hdmi-disabled-by-hdcp\": null,\n        \"airboard-isenabled\": null,\n        \"airboard-connection-info\": null,\n        \"airboard-pairing-status\": null,\n        \"wifidonglestatus\": null\n      },\n      \"usb\": {\n        \"statusTab.label.usbConnected\": null,\n        \"statusTab.label.usbType\": null\n      },\n      \"roomScheduling\": {\n        \"statusTab.label.roomSchedulingRoomStatus\": null,\n        \"statusTab.label.roomSchedulingCalendarSync\": null,\n        \"statusTab.label.roomSchedulingFusionStatus\": null\n      },\n      \"schedule\": {\n        \"statusTab.scheduling.enableModernAuth\": null,\n        \"statusTab.schedule.schedulingSource\": null,\n        \"statusTab.label.schedulingConnectionStatus\": null,\n        \"statusTab.schedule.connectionStatusMessage\": null,\n        \"statusTab.schedule.occupancyStatus\": null,\n        \"statusTab.schedule.occupancySource\": null,\n        \"statusTab.schedule.pushRegistrationStatus\": null,\n        \"statusTab.schedule.googleRegistrationStatus\": null,\n        \"statusTab.schedule.googleRegistrationUrl\": null,\n        \"statusTab.schedule.googleRegistrationCode\": null,\n        \"statusTab.schedule.exchangeRegistrationStatus\": null,\n        \"statusTab.schedule.exchangeRegistrationUrl\": null,\n        \"statusTab.schedule.exchangeRegistrationCode\": null,\n        \"statusTab.schedule.currentMeeting.scheduled\": null,\n        \"statusTab.schedule.currentMeetingSubject\": null,\n        \"statusTab.schedule.currentMeetingEndTime\": null,\n        \"statusTab.schedule.currentMeetingRecurring\": null,\n        \"statusTab.schedule.currentMeetingOrganizer\": null,\n        \"statusTab-schedule-attendees\": null,\n        \"statusTab.schedule.currentMeetingCheckInStatus\": null,\n        \"statusTab.schedule.currentMeetingMeetingPrivacyLevel\": null\n      },\n      \"categoryccs-cam-usb-f-400\": {\n        \"ccs-serial-number\": null,\n        \"ccs-camera-version\": null,\n        \"ccs-software-version\": null,\n        \"ccs-upgrade-version\": null,\n        \"ccs-room-occupancy\": null,\n        \"ccs-genius-framing-enabled\": null,\n        \"ccs-occupant-count-enabled\": null\n      },\n      \"categoryccs-camera\": {\n        \"ccs-serial-number\": null,\n        \"ccs-camera-version\": null,\n        \"ccs-software-version\": null,\n        \"ccs-upgrade-version\": null,\n        \"ccs-room-occupancy\": null,\n        \"ccs-genius-framing-enabled\": null,\n        \"ccs-occupant-count-enabled\": null\n      },\n      \"security\": {\n        \"statusTab-encryptConnection\": null\n      },\n      \"Peripherals\": {\n        \"features-conference-microphone\": null,\n        \"features-conference-speaker\": null,\n        \"features-default-speaker\": null,\n        \"features-camera\": null,\n        \"features-front-room-display\": null,\n        \"features-hdmiingest\": null,\n        \"ucprsettings-isConnected\": null,\n        \"category-model\": null,\n        \"category-ucpr-serialnumber\": null,\n        \"category-ucpr-firmwareversion\": null,\n        \"category-ucpr-usbA\": null,\n        \"category-ucpr-usbC\": null,\n        \"category-ucpr-hdmi\": null,\n        \"category-ucpr-byod\": null,\n        \"isConnected\": null,\n        \"category-serialnumber\": null,\n        \"category-firmwareversion\": null,\n        \"category-usbA\": null,\n        \"category-usbC\": null,\n        \"category-hdmi\": null,\n        \"category-byod\": null\n      },\n      \"logitech\": {\n        \"logitech-product-model\": null,\n        \"logitech-product-name\": null,\n        \"logitech-serial-number\": null,\n        \"logitech-firmware-version\": null,\n        \"hidden-firmwareUpdate\": null,\n        \"logitech-sync-software-version\": null,\n        \"logitech-status\": null,\n        \"logitech-rightsight\": null,\n        \"ConnectedToIoTHub\": \"Online\"\n      },\n      \"Applications\": {\n        \"application-mode-status\": null,\n        \"teams-video-address\": null\n      },\n      \"Hosts-Devices\": {\n        \"Hosts\": null,\n        \"Devices\": null\n      },\n      \"Programs\": {\n        \"Programs-LicensedCount\": 10,\n        \"Programs-SlaveMode\": false,\n        \"Programs-MasterHostname\": \"\",\n        \"Programs-MasterIPID\": \"\",\n        \"Programs-SlaveModeStatus\": \"\",\n        \"Programs-ProgramNumber1-FriendlyName\": \"XIO_Cloud\",\n        \"Programs-ProgramNumber1-Status\": \"Started\",\n        \"Programs-ProgramNumber1-ProgramFileName\": \"Home Test.smw\",\n        \"Programs-ProgramNumber1-SystemName\": \"XIOCloud\",\n        \"Programs-ProgramNumber1-Programmer\": \"AY\",\n        \"Programs-ProgramNumber1-CompiledOn\": \"9/7/2026 8:23 AM\",\n        \"Programs-ProgramNumber1-CompilerVersion\": \"3.03\",\n        \"Programs-ProgramNumber1-SymbolLibraryVersion\": \"1243\",\n        \"Programs-ProgramNumber1-IoLibraryVersion\": \"1243\",\n        \"Programs-ProgramNumber1-IopVersion\": \"4.1.76\",\n        \"Programs-ProgramNumber1-CrestronDatabaseVersion\": \"228.55.001.00\",\n        \"Programs-ProgramNumber1-ProgrammingEnvironment\": \"SIMPL Windows v4.3200.02\",\n        \"Programs-ProgramNumber1-TargetDevice\": \"CP4\",\n        \"Programs-ProgramNumber1-ConfigurationVersion\": \"22\",\n        \"Programs-ProgramNumber1-Include4Version\": \"2.21.274\",\n        \"Programs-ProgramNumber2-FriendlyName\": \"XioCloudSpaceCSharp\",\n        \"Programs-ProgramNumber2-Status\": \"Started\",\n        \"Programs-ProgramNumber2-ProgramFileName\": \"XioCloudSpaceCSharp.dll\",\n        \"Programs-ProgramNumber2-SystemName\": null,\n        \"Programs-ProgramNumber2-Programmer\": null,\n        \"Programs-ProgramNumber2-CompiledOn\": \"10/06/2026 03:26:31\",\n        \"Programs-ProgramNumber2-CompilerVersion\": \"1.0.0.0\",\n        \"Programs-ProgramNumber2-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber2-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber2-IopVersion\": null,\n        \"Programs-ProgramNumber2-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber2-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber2-TargetDevice\": \"CP4\",\n        \"Programs-ProgramNumber2-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber2-Include4Version\": \"2.22.15\",\n        \"Programs-ProgramNumber3-FriendlyName\": null,\n        \"Programs-ProgramNumber3-Status\": \"Stopped\",\n        \"Programs-ProgramNumber3-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber3-SystemName\": null,\n        \"Programs-ProgramNumber3-Programmer\": null,\n        \"Programs-ProgramNumber3-CompiledOn\": null,\n        \"Programs-ProgramNumber3-CompilerVersion\": null,\n        \"Programs-ProgramNumber3-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber3-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber3-IopVersion\": null,\n        \"Programs-ProgramNumber3-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber3-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber3-TargetDevice\": null,\n        \"Programs-ProgramNumber3-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber3-Include4Version\": null,\n        \"Programs-ProgramNumber4-FriendlyName\": null,\n        \"Programs-ProgramNumber4-Status\": \"Stopped\",\n        \"Programs-ProgramNumber4-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber4-SystemName\": null,\n        \"Programs-ProgramNumber4-Programmer\": null,\n        \"Programs-ProgramNumber4-CompiledOn\": null,\n        \"Programs-ProgramNumber4-CompilerVersion\": null,\n        \"Programs-ProgramNumber4-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber4-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber4-IopVersion\": null,\n        \"Programs-ProgramNumber4-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber4-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber4-TargetDevice\": null,\n        \"Programs-ProgramNumber4-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber4-Include4Version\": null,\n        \"Programs-ProgramNumber5-FriendlyName\": null,\n        \"Programs-ProgramNumber5-Status\": \"Stopped\",\n        \"Programs-ProgramNumber5-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber5-SystemName\": null,\n        \"Programs-ProgramNumber5-Programmer\": null,\n        \"Programs-ProgramNumber5-CompiledOn\": null,\n        \"Programs-ProgramNumber5-CompilerVersion\": null,\n        \"Programs-ProgramNumber5-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber5-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber5-IopVersion\": null,\n        \"Programs-ProgramNumber5-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber5-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber5-TargetDevice\": null,\n        \"Programs-ProgramNumber5-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber5-Include4Version\": null,\n        \"Programs-ProgramNumber6-FriendlyName\": null,\n        \"Programs-ProgramNumber6-Status\": \"Stopped\",\n        \"Programs-ProgramNumber6-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber6-SystemName\": null,\n        \"Programs-ProgramNumber6-Programmer\": null,\n        \"Programs-ProgramNumber6-CompiledOn\": null,\n        \"Programs-ProgramNumber6-CompilerVersion\": null,\n        \"Programs-ProgramNumber6-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber6-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber6-IopVersion\": null,\n        \"Programs-ProgramNumber6-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber6-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber6-TargetDevice\": null,\n        \"Programs-ProgramNumber6-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber6-Include4Version\": null,\n        \"Programs-ProgramNumber7-FriendlyName\": null,\n        \"Programs-ProgramNumber7-Status\": \"Stopped\",\n        \"Programs-ProgramNumber7-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber7-SystemName\": null,\n        \"Programs-ProgramNumber7-Programmer\": null,\n        \"Programs-ProgramNumber7-CompiledOn\": null,\n        \"Programs-ProgramNumber7-CompilerVersion\": null,\n        \"Programs-ProgramNumber7-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber7-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber7-IopVersion\": null,\n        \"Programs-ProgramNumber7-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber7-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber7-TargetDevice\": null,\n        \"Programs-ProgramNumber7-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber7-Include4Version\": null,\n        \"Programs-ProgramNumber8-FriendlyName\": null,\n        \"Programs-ProgramNumber8-Status\": \"Stopped\",\n        \"Programs-ProgramNumber8-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber8-SystemName\": null,\n        \"Programs-ProgramNumber8-Programmer\": null,\n        \"Programs-ProgramNumber8-CompiledOn\": null,\n        \"Programs-ProgramNumber8-CompilerVersion\": null,\n        \"Programs-ProgramNumber8-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber8-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber8-IopVersion\": null,\n        \"Programs-ProgramNumber8-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber8-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber8-TargetDevice\": null,\n        \"Programs-ProgramNumber8-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber8-Include4Version\": null,\n        \"Programs-ProgramNumber9-FriendlyName\": null,\n        \"Programs-ProgramNumber9-Status\": \"Stopped\",\n        \"Programs-ProgramNumber9-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber9-SystemName\": null,\n        \"Programs-ProgramNumber9-Programmer\": null,\n        \"Programs-ProgramNumber9-CompiledOn\": null,\n        \"Programs-ProgramNumber9-CompilerVersion\": null,\n        \"Programs-ProgramNumber9-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber9-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber9-IopVersion\": null,\n        \"Programs-ProgramNumber9-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber9-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber9-TargetDevice\": null,\n        \"Programs-ProgramNumber9-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber9-Include4Version\": null,\n        \"Programs-ProgramNumber10-FriendlyName\": null,\n        \"Programs-ProgramNumber10-Status\": \"Stopped\",\n        \"Programs-ProgramNumber10-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber10-SystemName\": null,\n        \"Programs-ProgramNumber10-Programmer\": null,\n        \"Programs-ProgramNumber10-CompiledOn\": null,\n        \"Programs-ProgramNumber10-CompilerVersion\": null,\n        \"Programs-ProgramNumber10-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber10-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber10-IopVersion\": null,\n        \"Programs-ProgramNumber10-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber10-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber10-TargetDevice\": null,\n        \"Programs-ProgramNumber10-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber10-Include4Version\": null\n      },\n      \"AVFramework\": {\n        \"avframework\": false,\n        \"avframework-version\": \"7.0400.0002\"\n      }\n    }\n  ],\n  \"MissingDevices\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Device Status (Batching)",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.crestron.io/api/v2/device/accountid/{{vault:accountId}}/pageno/{{pagenum}}/pagesize/{{pagesize}}/status",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "device",
+                "accountid",
+                "{{vault:accountId}}",
+                "pageno",
+                "{{pagenum}}",
+                "pagesize",
+                "{{pagesize}}",
+                "status"
+              ]
+            },
+            "description": "This method returns the device status for all devices within a particular account. A user can specify the number of devices and the page number to query. The maximum number of devices which can be queried is restricted to 20 devices.\n\n### Variables\n\n`accountId`: **Required**. String that sets the customer account ID that is issued after enabling public API access.\n\n`pagenum`: **Required**. A numeric value that sets the page number that should be queried.\n\n`pagesize`: **Required**. A numeric value that sets the page size (number of devices) that should be returned"
+          },
+          "response": [
+            {
+              "name": "Get Device Status (Batching)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://api.crestron.io/api/v2/device/accountid/{{vault:accountId}}/pageno/{{pagenum}}/pagesize/{{pagesize}}/status",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "device",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "pageno",
+                    "{{pagenum}}",
+                    "pagesize",
+                    "{{pagesize}}",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": "200"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 16 Oct 2026 21:17:59 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "none"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "strict-transport-security",
+                  "value": "max-age=31536000"
+                },
+                {
+                  "key": "x-ms-middleware-request-id",
+                  "value": "8fa25a60-8c1e-4e66-9665-0a30ddee8d20"
+                },
+                {
+                  "key": "request-context",
+                  "value": "appId=cid-v1:bb540103-2e2d-4888-98b1-d22b2b3f7151"
+                },
+                {
+                  "key": "x-xss-protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "content-security-policy",
+                  "value": "script-src 'self'"
+                },
+                {
+                  "key": "x-frame-options",
+                  "value": "deny"
+                },
+                {
+                  "key": "x-content-type-options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "expect-ct",
+                  "value": "max-age=604800,enforce"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"Pagination\": {\n    \"TotalDevices\": 2,\n    \"TotalPages\": 1,\n    \"PageSize\": 5,\n    \"CurrentPageNumber\": 1\n  },\n  \"DeviceList\": [\n    {\n      \"device\": {\n        \"device-cid\": \"c4-42-68-1f-0f-d4_-1\",\n        \"device-accountid\": \"11111111-bbbb-4444-eeeeeeeeeeeeeeeee\",\n        \"device-groupid\": \"bca30251-4f8e-4a2c-b52f-76805e9fc934\",\n        \"device-model\": \"TS-1070\",\n        \"device-category\": \"TouchPanel\",\n        \"device-manufacturer\": \"Crestron\",\n        \"device-id\": \"@E-c442681f0fd4\",\n        \"device-name\": \"TS70-home\",\n        \"device-builddate\": \"Tue May 26 16:15:25 EDT 2026  (600985)\",\n        \"device-key\": \"No SystemKey Server\",\n        \"user-device-name\": \"TS70-home\",\n        \"serial-number\": \"2219JBH19666\",\n        \"call-status\": null,\n        \"displayed-input\": null,\n        \"occupancy-status\": null,\n        \"firmware-version\": \"3.003.0021\",\n        \"sleep-status\": null,\n        \"skype-presence\": null,\n        \"cloudownedsettings-maximumcapacity\": null,\n        \"hardware-type\": null,\n        \"license-type\": null,\n        \"device-status\": \"Online\"\n      },\n      \"audio\": {\n        \"mic-mute-status\": null,\n        \"mute-status\": null,\n        \"volume\": null\n      },\n      \"connections\": {\n        \"bluetooth\": null,\n        \"bluetooth-pairing\": null,\n        \"display-power\": null,\n        \"hdmi-in\": null,\n        \"hdmi-out\": null,\n        \"usb-in\": null,\n        \"dm-in\": null\n      },\n      \"hdmi-input\": {\n        \"hdmi-input-resolution\": null,\n        \"hdmi-input-interlaced-detected\": null,\n        \"hdmi-input-is-source-hdcp-active\": null,\n        \"hdmi-input-source-hdcp-state\": null,\n        \"hdmi-input-horizontal-resolution\": null,\n        \"hdmi-input-vertical-resolution\": null,\n        \"hdmi-input-frames-per-second\": null,\n        \"hdmi-input-aspect-ratio\": null,\n        \"hdmi-input-audio-format\": null,\n        \"hdmi-input-audio-channels\": null,\n        \"hdmi-sync-detected\": null\n      },\n      \"hdmi-output\": {\n        \"hdmi-output-resolution\": null,\n        \"hdmi-output-interlaced-detected\": null,\n        \"hdmi-output-hdcp-disabled-by-hdcp\": null,\n        \"hdmi-output-horizontal-resolution\": null,\n        \"hdmi-output-vertical-resolution\": null,\n        \"hdmi-output-frames-per-second\": null,\n        \"hdmi-output-aspect-ratio\": null,\n        \"hdmi-output-audio-format\": null,\n        \"hdmi-output-audio-channels\": null,\n        \"hdmi-output-is-sink-connected\": null,\n        \"hdmi-output-manufacturer-string\": null,\n        \"hdmi-output-serial-number-string\": null\n      },\n      \"network\": {\n        \"status-host-name\": \"TS70-home\",\n        \"nic-1-primary-dns_status\": \"192.168.0.60(DHCP)\",\n        \"nic-1-secondary-dns_status\": \"8.8.8.8(DHCP)\",\n        \"status-domain-name\": \"jenandal.com\",\n        \"nic-1-dhcp\": true,\n        \"nic-1-ip-address\": \"192.168.0.111\",\n        \"nic-1-subnet-mask\": \"255.255.255.0\",\n        \"nic-1-def-router\": \"192.168.0.100\",\n        \"nic-1-linkActive\": true,\n        \"nic-1-mac-address\": \"c4.42.68.1f.0f.d4\",\n        \"nic-2-domain-name\": \"jenandal.com\",\n        \"nic-2-dhcp\": true,\n        \"nic-2-ip-address\": \"0.0.0.0\",\n        \"nic-2-subnet-mask\": \"0.0.0.0\",\n        \"nic-2-def-router\": \"0.0.0.0\",\n        \"nic-2-linkActive\": false,\n        \"nic-2-mac-address\": \"c4.42.68.1f.0f.d3\"\n      },\n      \"services\": {\n        \"calendar-connection\": null,\n        \"fusion-connection-type\": null,\n        \"fusion-status\": null,\n        \"skype-connection\": null\n      },\n      \"Conferencing\": {\n        \"sip-server-status\": null,\n        \"static-sip-qos\": null,\n        \"static-voice-qos\": null,\n        \"lldp-voice-vlan-id\": null,\n        \"lldp-voice-vlan-priority\": null,\n        \"vlan-ip-address\": null\n      },\n      \"DMInput\": {\n        \"dm-input-resolution\": null,\n        \"hdmi-input-interlaced-detected\": null,\n        \"dm-input-is-source-hdcp-active\": null,\n        \"dm-input-source-hdcp-state\": null,\n        \"dm-input-horizontal-resolution\": null,\n        \"dm-input-vertical-resolution\": null,\n        \"dm-input-frames-per-second\": null,\n        \"dm-input-aspect-ratio\": null,\n        \"dm-input-audio-format\": null,\n        \"dm-input-audio-channels\": null\n      },\n      \"audioVideo\": {\n        \"miracast-isEnabled\": null,\n        \"miracast-defaultwindowsexperience\": null,\n        \"miracast-wifidirectMode\": null,\n        \"hdmi-disabled-by-hdcp\": null,\n        \"airboard-isenabled\": null,\n        \"airboard-connection-info\": null,\n        \"airboard-pairing-status\": null,\n        \"wifidonglestatus\": null\n      },\n      \"usb\": {\n        \"statusTab.label.usbConnected\": false,\n        \"statusTab.label.usbType\": \"\"\n      },\n      \"roomScheduling\": {\n        \"statusTab.label.roomSchedulingRoomStatus\": null,\n        \"statusTab.label.roomSchedulingCalendarSync\": null,\n        \"statusTab.label.roomSchedulingFusionStatus\": null\n      },\n      \"schedule\": {\n        \"statusTab.scheduling.enableModernAuth\": null,\n        \"statusTab.schedule.schedulingSource\": null,\n        \"statusTab.label.schedulingConnectionStatus\": null,\n        \"statusTab.schedule.connectionStatusMessage\": null,\n        \"statusTab.schedule.occupancyStatus\": null,\n        \"statusTab.schedule.occupancySource\": null,\n        \"statusTab.schedule.pushRegistrationStatus\": null,\n        \"statusTab.schedule.googleRegistrationStatus\": null,\n        \"statusTab.schedule.googleRegistrationUrl\": null,\n        \"statusTab.schedule.googleRegistrationCode\": null,\n        \"statusTab.schedule.exchangeRegistrationStatus\": null,\n        \"statusTab.schedule.exchangeRegistrationUrl\": null,\n        \"statusTab.schedule.exchangeRegistrationCode\": null,\n        \"statusTab.schedule.currentMeeting.scheduled\": null,\n        \"statusTab.schedule.currentMeetingSubject\": null,\n        \"statusTab.schedule.currentMeetingEndTime\": null,\n        \"statusTab.schedule.currentMeetingRecurring\": null,\n        \"statusTab.schedule.currentMeetingOrganizer\": null,\n        \"statusTab-schedule-attendees\": null,\n        \"statusTab.schedule.currentMeetingCheckInStatus\": null,\n        \"statusTab.schedule.currentMeetingMeetingPrivacyLevel\": null\n      },\n      \"categoryccs-cam-usb-f-400\": {\n        \"ccs-serial-number\": null,\n        \"ccs-camera-version\": null,\n        \"ccs-software-version\": null,\n        \"ccs-upgrade-version\": null,\n        \"ccs-room-occupancy\": null,\n        \"ccs-genius-framing-enabled\": null,\n        \"ccs-occupant-count-enabled\": null\n      },\n      \"categoryccs-camera\": {\n        \"ccs-serial-number\": null,\n        \"ccs-camera-version\": null,\n        \"ccs-software-version\": null,\n        \"ccs-upgrade-version\": null,\n        \"ccs-room-occupancy\": null,\n        \"ccs-genius-framing-enabled\": null,\n        \"ccs-occupant-count-enabled\": null\n      },\n      \"security\": {\n        \"statusTab-encryptConnection\": false\n      },\n      \"Peripherals\": {\n        \"features-conference-microphone\": null,\n        \"features-conference-speaker\": null,\n        \"features-default-speaker\": null,\n        \"features-camera\": null,\n        \"features-front-room-display\": null,\n        \"features-hdmiingest\": null,\n        \"ucprsettings-isConnected\": null,\n        \"category-model\": null,\n        \"category-ucpr-serialnumber\": null,\n        \"category-ucpr-firmwareversion\": null,\n        \"category-ucpr-usbA\": null,\n        \"category-ucpr-usbC\": null,\n        \"category-ucpr-hdmi\": null,\n        \"category-ucpr-byod\": null,\n        \"isConnected\": null,\n        \"category-serialnumber\": null,\n        \"category-firmwareversion\": null,\n        \"category-usbA\": null,\n        \"category-usbC\": null,\n        \"category-hdmi\": null,\n        \"category-byod\": null\n      },\n      \"logitech\": {\n        \"logitech-product-model\": null,\n        \"logitech-product-name\": null,\n        \"logitech-serial-number\": null,\n        \"logitech-firmware-version\": null,\n        \"hidden-firmwareUpdate\": null,\n        \"logitech-sync-software-version\": null,\n        \"logitech-status\": null,\n        \"logitech-rightsight\": null,\n        \"ConnectedToIoTHub\": \"Online\"\n      },\n      \"Applications\": {\n        \"application-mode-status\": \"User\",\n        \"teams-video-address\": null\n      },\n      \"Hosts-Devices\": {\n        \"Hosts\": null,\n        \"Devices\": null\n      },\n      \"Device Pairing\": {\n        \"pairing-status\": null\n      },\n      \"Occupancy\": {\n        \"statusOccupied\": null,\n        \"statusTimeOut\": null\n      },\n      \"display\": {\n        \"statusTab.label.displayStatus\": \"On\"\n      },\n      \"snmp-configuration\": {\n        \"snmp-enabled\": false,\n        \"snmp-allow-all\": false,\n        \"snmp-trap-enabled\": true,\n        \"snmp-table\": null\n      }\n    },\n    {\n      \"device\": {\n        \"device-cid\": \"00-10-7f-9c-c8-61_-1\",\n        \"device-accountid\": \"11111111-bbbb-4444-eeeeeeeeeeeeeeeee\",\n        \"device-groupid\": \"bca30251-4f8e-4a2c-b52f-76805e9fc934\",\n        \"device-model\": \"CP4\",\n        \"device-category\": \"Control System\",\n        \"device-manufacturer\": \"Crestron\",\n        \"device-id\": \"@E-00107f9cc861\",\n        \"device-name\": \"cp4-home\",\n        \"device-builddate\": \"Jun 18 2026  (602276)\",\n        \"device-key\": \"21132209f219bf1b2d5bb800c8e018fb\",\n        \"user-device-name\": \"cp4-home\",\n        \"serial-number\": \"X140063\",\n        \"call-status\": null,\n        \"displayed-input\": null,\n        \"occupancy-status\": null,\n        \"firmware-version\": \"2.8006.00322\",\n        \"sleep-status\": null,\n        \"skype-presence\": null,\n        \"cloudownedsettings-maximumcapacity\": null,\n        \"hardware-type\": null,\n        \"license-type\": null,\n        \"device-status\": \"Online\"\n      },\n      \"audio\": {\n        \"mic-mute-status\": null,\n        \"mute-status\": null,\n        \"volume\": null\n      },\n      \"connections\": {\n        \"bluetooth\": null,\n        \"bluetooth-pairing\": null,\n        \"display-power\": null,\n        \"hdmi-in\": null,\n        \"hdmi-out\": null,\n        \"usb-in\": null,\n        \"dm-in\": null\n      },\n      \"hdmi-input\": {\n        \"hdmi-input-resolution\": null,\n        \"hdmi-input-interlaced-detected\": null,\n        \"hdmi-input-is-source-hdcp-active\": null,\n        \"hdmi-input-source-hdcp-state\": null,\n        \"hdmi-input-horizontal-resolution\": null,\n        \"hdmi-input-vertical-resolution\": null,\n        \"hdmi-input-frames-per-second\": null,\n        \"hdmi-input-aspect-ratio\": null,\n        \"hdmi-input-audio-format\": null,\n        \"hdmi-input-audio-channels\": null,\n        \"hdmi-sync-detected\": null\n      },\n      \"hdmi-output\": {\n        \"hdmi-output-resolution\": null,\n        \"hdmi-output-interlaced-detected\": null,\n        \"hdmi-output-hdcp-disabled-by-hdcp\": null,\n        \"hdmi-output-horizontal-resolution\": null,\n        \"hdmi-output-vertical-resolution\": null,\n        \"hdmi-output-frames-per-second\": null,\n        \"hdmi-output-aspect-ratio\": null,\n        \"hdmi-output-audio-format\": null,\n        \"hdmi-output-audio-channels\": null,\n        \"hdmi-output-is-sink-connected\": null,\n        \"hdmi-output-manufacturer-string\": null,\n        \"hdmi-output-serial-number-string\": null\n      },\n      \"network\": {\n        \"status-host-name\": \"cp4-home\",\n        \"status-domain-name\": \"jenandal.com\",\n        \"nic-1-dns-servers\": [\n          \"192.168.0.60(DHCP)\",\n          \"8.8.8.8(DHCP)\"\n        ],\n        \"nic-1-dhcp-enabled\": true,\n        \"nic-1-ip-address\": \"192.168.0.120\",\n        \"nic-1-subnet-mask\": \"255.255.255.0\",\n        \"nic-1-def-router\": \"192.168.0.100\",\n        \"nic-1-mac-address\": \"00.10.7f.9c.c8.61\",\n        \"nic-1-link\": true,\n        \"usbToEthernet-dhcp\": null,\n        \"usbToEthernet-dynamic-ip-address\": null,\n        \"usbToEthernet-dynamic-subnet-mask\": null,\n        \"usbToEthernet-dynamic-def-router-3\": null,\n        \"usbToEthernet-static-ip-address\": null,\n        \"usbToEthernet-static-subnet-mask\": null,\n        \"usbToEthernet-static-def-router-3\": null,\n        \"usbToEthernet.linkActive\": null,\n        \"usbToEthernet.macAddress\": null\n      },\n      \"services\": {\n        \"calendar-connection\": null,\n        \"fusion-connection-type\": null,\n        \"fusion-status\": null,\n        \"skype-connection\": null\n      },\n      \"Conferencing\": {\n        \"sip-server-status\": null,\n        \"static-sip-qos\": null,\n        \"static-voice-qos\": null,\n        \"lldp-voice-vlan-id\": null,\n        \"lldp-voice-vlan-priority\": null,\n        \"vlan-ip-address\": null\n      },\n      \"DMInput\": {\n        \"dm-input-resolution\": null,\n        \"hdmi-input-interlaced-detected\": null,\n        \"dm-input-is-source-hdcp-active\": null,\n        \"dm-input-source-hdcp-state\": null,\n        \"dm-input-horizontal-resolution\": null,\n        \"dm-input-vertical-resolution\": null,\n        \"dm-input-frames-per-second\": null,\n        \"dm-input-aspect-ratio\": null,\n        \"dm-input-audio-format\": null,\n        \"dm-input-audio-channels\": null\n      },\n      \"audioVideo\": {\n        \"miracast-isEnabled\": null,\n        \"miracast-defaultwindowsexperience\": null,\n        \"miracast-wifidirectMode\": null,\n        \"hdmi-disabled-by-hdcp\": null,\n        \"airboard-isenabled\": null,\n        \"airboard-connection-info\": null,\n        \"airboard-pairing-status\": null,\n        \"wifidonglestatus\": null\n      },\n      \"usb\": {\n        \"statusTab.label.usbConnected\": null,\n        \"statusTab.label.usbType\": null\n      },\n      \"roomScheduling\": {\n        \"statusTab.label.roomSchedulingRoomStatus\": null,\n        \"statusTab.label.roomSchedulingCalendarSync\": null,\n        \"statusTab.label.roomSchedulingFusionStatus\": null\n      },\n      \"schedule\": {\n        \"statusTab.scheduling.enableModernAuth\": null,\n        \"statusTab.schedule.schedulingSource\": null,\n        \"statusTab.label.schedulingConnectionStatus\": null,\n        \"statusTab.schedule.connectionStatusMessage\": null,\n        \"statusTab.schedule.occupancyStatus\": null,\n        \"statusTab.schedule.occupancySource\": null,\n        \"statusTab.schedule.pushRegistrationStatus\": null,\n        \"statusTab.schedule.googleRegistrationStatus\": null,\n        \"statusTab.schedule.googleRegistrationUrl\": null,\n        \"statusTab.schedule.googleRegistrationCode\": null,\n        \"statusTab.schedule.exchangeRegistrationStatus\": null,\n        \"statusTab.schedule.exchangeRegistrationUrl\": null,\n        \"statusTab.schedule.exchangeRegistrationCode\": null,\n        \"statusTab.schedule.currentMeeting.scheduled\": null,\n        \"statusTab.schedule.currentMeetingSubject\": null,\n        \"statusTab.schedule.currentMeetingEndTime\": null,\n        \"statusTab.schedule.currentMeetingRecurring\": null,\n        \"statusTab.schedule.currentMeetingOrganizer\": null,\n        \"statusTab-schedule-attendees\": null,\n        \"statusTab.schedule.currentMeetingCheckInStatus\": null,\n        \"statusTab.schedule.currentMeetingMeetingPrivacyLevel\": null\n      },\n      \"categoryccs-cam-usb-f-400\": {\n        \"ccs-serial-number\": null,\n        \"ccs-camera-version\": null,\n        \"ccs-software-version\": null,\n        \"ccs-upgrade-version\": null,\n        \"ccs-room-occupancy\": null,\n        \"ccs-genius-framing-enabled\": null,\n        \"ccs-occupant-count-enabled\": null\n      },\n      \"categoryccs-camera\": {\n        \"ccs-serial-number\": null,\n        \"ccs-camera-version\": null,\n        \"ccs-software-version\": null,\n        \"ccs-upgrade-version\": null,\n        \"ccs-room-occupancy\": null,\n        \"ccs-genius-framing-enabled\": null,\n        \"ccs-occupant-count-enabled\": null\n      },\n      \"security\": {\n        \"statusTab-encryptConnection\": null\n      },\n      \"Peripherals\": {\n        \"features-conference-microphone\": null,\n        \"features-conference-speaker\": null,\n        \"features-default-speaker\": null,\n        \"features-camera\": null,\n        \"features-front-room-display\": null,\n        \"features-hdmiingest\": null,\n        \"ucprsettings-isConnected\": null,\n        \"category-model\": null,\n        \"category-ucpr-serialnumber\": null,\n        \"category-ucpr-firmwareversion\": null,\n        \"category-ucpr-usbA\": null,\n        \"category-ucpr-usbC\": null,\n        \"category-ucpr-hdmi\": null,\n        \"category-ucpr-byod\": null,\n        \"isConnected\": null,\n        \"category-serialnumber\": null,\n        \"category-firmwareversion\": null,\n        \"category-usbA\": null,\n        \"category-usbC\": null,\n        \"category-hdmi\": null,\n        \"category-byod\": null\n      },\n      \"logitech\": {\n        \"logitech-product-model\": null,\n        \"logitech-product-name\": null,\n        \"logitech-serial-number\": null,\n        \"logitech-firmware-version\": null,\n        \"hidden-firmwareUpdate\": null,\n        \"logitech-sync-software-version\": null,\n        \"logitech-status\": null,\n        \"logitech-rightsight\": null,\n        \"ConnectedToIoTHub\": \"Online\"\n      },\n      \"Applications\": {\n        \"application-mode-status\": null,\n        \"teams-video-address\": null\n      },\n      \"Hosts-Devices\": {\n        \"Hosts\": null,\n        \"Devices\": null\n      },\n      \"Programs\": {\n        \"Programs-LicensedCount\": 10,\n        \"Programs-SlaveMode\": false,\n        \"Programs-MasterHostname\": \"\",\n        \"Programs-MasterIPID\": \"\",\n        \"Programs-SlaveModeStatus\": \"\",\n        \"Programs-ProgramNumber1-FriendlyName\": \"XIO_Cloud\",\n        \"Programs-ProgramNumber1-Status\": \"Started\",\n        \"Programs-ProgramNumber1-ProgramFileName\": \"Home Test.smw\",\n        \"Programs-ProgramNumber1-SystemName\": \"XIOCloud\",\n        \"Programs-ProgramNumber1-Programmer\": \"AY\",\n        \"Programs-ProgramNumber1-CompiledOn\": \"9/7/2026 8:23 AM\",\n        \"Programs-ProgramNumber1-CompilerVersion\": \"3.03\",\n        \"Programs-ProgramNumber1-SymbolLibraryVersion\": \"1243\",\n        \"Programs-ProgramNumber1-IoLibraryVersion\": \"1243\",\n        \"Programs-ProgramNumber1-IopVersion\": \"4.1.76\",\n        \"Programs-ProgramNumber1-CrestronDatabaseVersion\": \"228.55.001.00\",\n        \"Programs-ProgramNumber1-ProgrammingEnvironment\": \"SIMPL Windows v4.3200.02\",\n        \"Programs-ProgramNumber1-TargetDevice\": \"CP4\",\n        \"Programs-ProgramNumber1-ConfigurationVersion\": \"22\",\n        \"Programs-ProgramNumber1-Include4Version\": \"2.21.274\",\n        \"Programs-ProgramNumber2-FriendlyName\": \"XioCloudSpaceCSharp\",\n        \"Programs-ProgramNumber2-Status\": \"Started\",\n        \"Programs-ProgramNumber2-ProgramFileName\": \"XioCloudSpaceCSharp.dll\",\n        \"Programs-ProgramNumber2-SystemName\": null,\n        \"Programs-ProgramNumber2-Programmer\": null,\n        \"Programs-ProgramNumber2-CompiledOn\": \"10/06/2026 03:26:31\",\n        \"Programs-ProgramNumber2-CompilerVersion\": \"1.0.0.0\",\n        \"Programs-ProgramNumber2-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber2-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber2-IopVersion\": null,\n        \"Programs-ProgramNumber2-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber2-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber2-TargetDevice\": \"CP4\",\n        \"Programs-ProgramNumber2-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber2-Include4Version\": \"2.22.15\",\n        \"Programs-ProgramNumber3-FriendlyName\": null,\n        \"Programs-ProgramNumber3-Status\": \"Stopped\",\n        \"Programs-ProgramNumber3-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber3-SystemName\": null,\n        \"Programs-ProgramNumber3-Programmer\": null,\n        \"Programs-ProgramNumber3-CompiledOn\": null,\n        \"Programs-ProgramNumber3-CompilerVersion\": null,\n        \"Programs-ProgramNumber3-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber3-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber3-IopVersion\": null,\n        \"Programs-ProgramNumber3-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber3-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber3-TargetDevice\": null,\n        \"Programs-ProgramNumber3-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber3-Include4Version\": null,\n        \"Programs-ProgramNumber4-FriendlyName\": null,\n        \"Programs-ProgramNumber4-Status\": \"Stopped\",\n        \"Programs-ProgramNumber4-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber4-SystemName\": null,\n        \"Programs-ProgramNumber4-Programmer\": null,\n        \"Programs-ProgramNumber4-CompiledOn\": null,\n        \"Programs-ProgramNumber4-CompilerVersion\": null,\n        \"Programs-ProgramNumber4-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber4-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber4-IopVersion\": null,\n        \"Programs-ProgramNumber4-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber4-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber4-TargetDevice\": null,\n        \"Programs-ProgramNumber4-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber4-Include4Version\": null,\n        \"Programs-ProgramNumber5-FriendlyName\": null,\n        \"Programs-ProgramNumber5-Status\": \"Stopped\",\n        \"Programs-ProgramNumber5-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber5-SystemName\": null,\n        \"Programs-ProgramNumber5-Programmer\": null,\n        \"Programs-ProgramNumber5-CompiledOn\": null,\n        \"Programs-ProgramNumber5-CompilerVersion\": null,\n        \"Programs-ProgramNumber5-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber5-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber5-IopVersion\": null,\n        \"Programs-ProgramNumber5-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber5-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber5-TargetDevice\": null,\n        \"Programs-ProgramNumber5-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber5-Include4Version\": null,\n        \"Programs-ProgramNumber6-FriendlyName\": null,\n        \"Programs-ProgramNumber6-Status\": \"Stopped\",\n        \"Programs-ProgramNumber6-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber6-SystemName\": null,\n        \"Programs-ProgramNumber6-Programmer\": null,\n        \"Programs-ProgramNumber6-CompiledOn\": null,\n        \"Programs-ProgramNumber6-CompilerVersion\": null,\n        \"Programs-ProgramNumber6-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber6-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber6-IopVersion\": null,\n        \"Programs-ProgramNumber6-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber6-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber6-TargetDevice\": null,\n        \"Programs-ProgramNumber6-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber6-Include4Version\": null,\n        \"Programs-ProgramNumber7-FriendlyName\": null,\n        \"Programs-ProgramNumber7-Status\": \"Stopped\",\n        \"Programs-ProgramNumber7-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber7-SystemName\": null,\n        \"Programs-ProgramNumber7-Programmer\": null,\n        \"Programs-ProgramNumber7-CompiledOn\": null,\n        \"Programs-ProgramNumber7-CompilerVersion\": null,\n        \"Programs-ProgramNumber7-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber7-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber7-IopVersion\": null,\n        \"Programs-ProgramNumber7-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber7-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber7-TargetDevice\": null,\n        \"Programs-ProgramNumber7-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber7-Include4Version\": null,\n        \"Programs-ProgramNumber8-FriendlyName\": null,\n        \"Programs-ProgramNumber8-Status\": \"Stopped\",\n        \"Programs-ProgramNumber8-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber8-SystemName\": null,\n        \"Programs-ProgramNumber8-Programmer\": null,\n        \"Programs-ProgramNumber8-CompiledOn\": null,\n        \"Programs-ProgramNumber8-CompilerVersion\": null,\n        \"Programs-ProgramNumber8-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber8-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber8-IopVersion\": null,\n        \"Programs-ProgramNumber8-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber8-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber8-TargetDevice\": null,\n        \"Programs-ProgramNumber8-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber8-Include4Version\": null,\n        \"Programs-ProgramNumber9-FriendlyName\": null,\n        \"Programs-ProgramNumber9-Status\": \"Stopped\",\n        \"Programs-ProgramNumber9-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber9-SystemName\": null,\n        \"Programs-ProgramNumber9-Programmer\": null,\n        \"Programs-ProgramNumber9-CompiledOn\": null,\n        \"Programs-ProgramNumber9-CompilerVersion\": null,\n        \"Programs-ProgramNumber9-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber9-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber9-IopVersion\": null,\n        \"Programs-ProgramNumber9-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber9-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber9-TargetDevice\": null,\n        \"Programs-ProgramNumber9-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber9-Include4Version\": null,\n        \"Programs-ProgramNumber10-FriendlyName\": null,\n        \"Programs-ProgramNumber10-Status\": \"Stopped\",\n        \"Programs-ProgramNumber10-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber10-SystemName\": null,\n        \"Programs-ProgramNumber10-Programmer\": null,\n        \"Programs-ProgramNumber10-CompiledOn\": null,\n        \"Programs-ProgramNumber10-CompilerVersion\": null,\n        \"Programs-ProgramNumber10-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber10-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber10-IopVersion\": null,\n        \"Programs-ProgramNumber10-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber10-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber10-TargetDevice\": null,\n        \"Programs-ProgramNumber10-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber10-Include4Version\": null\n      },\n      \"AVFramework\": {\n        \"avframework\": false,\n        \"avframework-version\": \"7.0400.0002\"\n      }\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Device Status by Model (Batching)",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.crestron.io/api/v2/device/accountid/{{vault:accountId}}/devicemodel/{{deviceModel}}/pageno/{{pagenum}}/pagesize/{{pagesize}}/status",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "device",
+                "accountid",
+                "{{vault:accountId}}",
+                "devicemodel",
+                "{{deviceModel}}",
+                "pageno",
+                "{{pagenum}}",
+                "pagesize",
+                "{{pagesize}}",
+                "status"
+              ]
+            },
+            "description": "This method returns the device status for all devices of a specific model within a particular account. A user can specify the number of devices and the page number to query. The maximum number of devices which can be queried is restricted to 20 devices.\n\n**NOTE**: The device model can be obtained via the \"device-model\" property in the device query response.\n\n### Variables\n\n`accountId`: **Required**. String that sets the customer account ID that is issued after enabling public API access.\n\n`deviceModel`: **Required**. String that sets the device model that should be queried.\n\n`pagenum`: **Required**. A numeric value that sets the page number that should be queried.\n\n`pagesize`: **Required**. A numeric value that sets the page size (number of devices) that should be returned"
+          },
+          "response": [
+            {
+              "name": "Get Device Status by Model (Batching)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://api.crestron.io/api/v2/device/accountid/{{vault:accountId}}/devicemodel/{{deviceModel}}/pageno/{{pagenum}}/pagesize/{{pagesize}}/status",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "device",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "devicemodel",
+                    "{{deviceModel}}",
+                    "pageno",
+                    "{{pagenum}}",
+                    "pagesize",
+                    "{{pagesize}}",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": "200"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 16 Oct 2026 21:18:03 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "none"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "strict-transport-security",
+                  "value": "max-age=31536000"
+                },
+                {
+                  "key": "x-ms-middleware-request-id",
+                  "value": "ac4ec21b-cd49-43b4-9eeb-c5d124ef79e7"
+                },
+                {
+                  "key": "request-context",
+                  "value": "appId=cid-v1:246ba1ce-02db-489e-8e74-932ff9dbac86"
+                },
+                {
+                  "key": "x-xss-protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "content-security-policy",
+                  "value": "script-src 'self'"
+                },
+                {
+                  "key": "x-frame-options",
+                  "value": "deny"
+                },
+                {
+                  "key": "x-content-type-options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "expect-ct",
+                  "value": "max-age=604800,enforce"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"Pagination\": {\n    \"TotalDevices\": 1,\n    \"TotalPages\": 1,\n    \"PageSize\": 5,\n    \"CurrentPageNumber\": 1\n  },\n  \"DeviceList\": [\n    {\n      \"device\": {\n        \"device-cid\": \"00-10-7f-9c-c8-61_-1\",\n        \"device-accountid\": \"11111111-bbbb-4444-eeeeeeeeeeeeeeeee\",\n        \"device-groupid\": \"bca30251-4f8e-4a2c-b52f-76805e9fc934\",\n        \"device-model\": \"CP4\",\n        \"device-category\": \"Control System\",\n        \"device-manufacturer\": \"Crestron\",\n        \"device-id\": \"@E-00107f9cc861\",\n        \"device-name\": \"cp4-home\",\n        \"device-builddate\": \"Jun 18 2026  (602276)\",\n        \"device-key\": \"21132209f219bf1b2d5bb800c8e018fb\",\n        \"user-device-name\": \"cp4-home\",\n        \"serial-number\": \"X140063\",\n        \"call-status\": null,\n        \"displayed-input\": null,\n        \"occupancy-status\": null,\n        \"firmware-version\": \"2.8006.00322\",\n        \"sleep-status\": null,\n        \"skype-presence\": null,\n        \"cloudownedsettings-maximumcapacity\": null,\n        \"hardware-type\": null,\n        \"license-type\": null,\n        \"device-status\": \"Online\"\n      },\n      \"audio\": {\n        \"mic-mute-status\": null,\n        \"mute-status\": null,\n        \"volume\": null\n      },\n      \"connections\": {\n        \"bluetooth\": null,\n        \"bluetooth-pairing\": null,\n        \"display-power\": null,\n        \"hdmi-in\": null,\n        \"hdmi-out\": null,\n        \"usb-in\": null,\n        \"dm-in\": null\n      },\n      \"hdmi-input\": {\n        \"hdmi-input-resolution\": null,\n        \"hdmi-input-interlaced-detected\": null,\n        \"hdmi-input-is-source-hdcp-active\": null,\n        \"hdmi-input-source-hdcp-state\": null,\n        \"hdmi-input-horizontal-resolution\": null,\n        \"hdmi-input-vertical-resolution\": null,\n        \"hdmi-input-frames-per-second\": null,\n        \"hdmi-input-aspect-ratio\": null,\n        \"hdmi-input-audio-format\": null,\n        \"hdmi-input-audio-channels\": null,\n        \"hdmi-sync-detected\": null\n      },\n      \"hdmi-output\": {\n        \"hdmi-output-resolution\": null,\n        \"hdmi-output-interlaced-detected\": null,\n        \"hdmi-output-hdcp-disabled-by-hdcp\": null,\n        \"hdmi-output-horizontal-resolution\": null,\n        \"hdmi-output-vertical-resolution\": null,\n        \"hdmi-output-frames-per-second\": null,\n        \"hdmi-output-aspect-ratio\": null,\n        \"hdmi-output-audio-format\": null,\n        \"hdmi-output-audio-channels\": null,\n        \"hdmi-output-is-sink-connected\": null,\n        \"hdmi-output-manufacturer-string\": null,\n        \"hdmi-output-serial-number-string\": null\n      },\n      \"network\": {\n        \"status-host-name\": \"cp4-home\",\n        \"status-domain-name\": \"jenandal.com\",\n        \"nic-1-dns-servers\": [\n          \"192.168.0.60(DHCP)\",\n          \"8.8.8.8(DHCP)\"\n        ],\n        \"nic-1-dhcp-enabled\": true,\n        \"nic-1-ip-address\": \"192.168.0.120\",\n        \"nic-1-subnet-mask\": \"255.255.255.0\",\n        \"nic-1-def-router\": \"192.168.0.100\",\n        \"nic-1-mac-address\": \"00.10.7f.9c.c8.61\",\n        \"nic-1-link\": true,\n        \"usbToEthernet-dhcp\": null,\n        \"usbToEthernet-dynamic-ip-address\": null,\n        \"usbToEthernet-dynamic-subnet-mask\": null,\n        \"usbToEthernet-dynamic-def-router-3\": null,\n        \"usbToEthernet-static-ip-address\": null,\n        \"usbToEthernet-static-subnet-mask\": null,\n        \"usbToEthernet-static-def-router-3\": null,\n        \"usbToEthernet.linkActive\": null,\n        \"usbToEthernet.macAddress\": null\n      },\n      \"services\": {\n        \"calendar-connection\": null,\n        \"fusion-connection-type\": null,\n        \"fusion-status\": null,\n        \"skype-connection\": null\n      },\n      \"Conferencing\": {\n        \"sip-server-status\": null,\n        \"static-sip-qos\": null,\n        \"static-voice-qos\": null,\n        \"lldp-voice-vlan-id\": null,\n        \"lldp-voice-vlan-priority\": null,\n        \"vlan-ip-address\": null\n      },\n      \"DMInput\": {\n        \"dm-input-resolution\": null,\n        \"hdmi-input-interlaced-detected\": null,\n        \"dm-input-is-source-hdcp-active\": null,\n        \"dm-input-source-hdcp-state\": null,\n        \"dm-input-horizontal-resolution\": null,\n        \"dm-input-vertical-resolution\": null,\n        \"dm-input-frames-per-second\": null,\n        \"dm-input-aspect-ratio\": null,\n        \"dm-input-audio-format\": null,\n        \"dm-input-audio-channels\": null\n      },\n      \"audioVideo\": {\n        \"miracast-isEnabled\": null,\n        \"miracast-defaultwindowsexperience\": null,\n        \"miracast-wifidirectMode\": null,\n        \"hdmi-disabled-by-hdcp\": null,\n        \"airboard-isenabled\": null,\n        \"airboard-connection-info\": null,\n        \"airboard-pairing-status\": null,\n        \"wifidonglestatus\": null\n      },\n      \"usb\": {\n        \"statusTab.label.usbConnected\": null,\n        \"statusTab.label.usbType\": null\n      },\n      \"roomScheduling\": {\n        \"statusTab.label.roomSchedulingRoomStatus\": null,\n        \"statusTab.label.roomSchedulingCalendarSync\": null,\n        \"statusTab.label.roomSchedulingFusionStatus\": null\n      },\n      \"schedule\": {\n        \"statusTab.scheduling.enableModernAuth\": null,\n        \"statusTab.schedule.schedulingSource\": null,\n        \"statusTab.label.schedulingConnectionStatus\": null,\n        \"statusTab.schedule.connectionStatusMessage\": null,\n        \"statusTab.schedule.occupancyStatus\": null,\n        \"statusTab.schedule.occupancySource\": null,\n        \"statusTab.schedule.pushRegistrationStatus\": null,\n        \"statusTab.schedule.googleRegistrationStatus\": null,\n        \"statusTab.schedule.googleRegistrationUrl\": null,\n        \"statusTab.schedule.googleRegistrationCode\": null,\n        \"statusTab.schedule.exchangeRegistrationStatus\": null,\n        \"statusTab.schedule.exchangeRegistrationUrl\": null,\n        \"statusTab.schedule.exchangeRegistrationCode\": null,\n        \"statusTab.schedule.currentMeeting.scheduled\": null,\n        \"statusTab.schedule.currentMeetingSubject\": null,\n        \"statusTab.schedule.currentMeetingEndTime\": null,\n        \"statusTab.schedule.currentMeetingRecurring\": null,\n        \"statusTab.schedule.currentMeetingOrganizer\": null,\n        \"statusTab-schedule-attendees\": null,\n        \"statusTab.schedule.currentMeetingCheckInStatus\": null,\n        \"statusTab.schedule.currentMeetingMeetingPrivacyLevel\": null\n      },\n      \"categoryccs-cam-usb-f-400\": {\n        \"ccs-serial-number\": null,\n        \"ccs-camera-version\": null,\n        \"ccs-software-version\": null,\n        \"ccs-upgrade-version\": null,\n        \"ccs-room-occupancy\": null,\n        \"ccs-genius-framing-enabled\": null,\n        \"ccs-occupant-count-enabled\": null\n      },\n      \"categoryccs-camera\": {\n        \"ccs-serial-number\": null,\n        \"ccs-camera-version\": null,\n        \"ccs-software-version\": null,\n        \"ccs-upgrade-version\": null,\n        \"ccs-room-occupancy\": null,\n        \"ccs-genius-framing-enabled\": null,\n        \"ccs-occupant-count-enabled\": null\n      },\n      \"security\": {\n        \"statusTab-encryptConnection\": null\n      },\n      \"Peripherals\": {\n        \"features-conference-microphone\": null,\n        \"features-conference-speaker\": null,\n        \"features-default-speaker\": null,\n        \"features-camera\": null,\n        \"features-front-room-display\": null,\n        \"features-hdmiingest\": null,\n        \"ucprsettings-isConnected\": null,\n        \"category-model\": null,\n        \"category-ucpr-serialnumber\": null,\n        \"category-ucpr-firmwareversion\": null,\n        \"category-ucpr-usbA\": null,\n        \"category-ucpr-usbC\": null,\n        \"category-ucpr-hdmi\": null,\n        \"category-ucpr-byod\": null,\n        \"isConnected\": null,\n        \"category-serialnumber\": null,\n        \"category-firmwareversion\": null,\n        \"category-usbA\": null,\n        \"category-usbC\": null,\n        \"category-hdmi\": null,\n        \"category-byod\": null\n      },\n      \"logitech\": {\n        \"logitech-product-model\": null,\n        \"logitech-product-name\": null,\n        \"logitech-serial-number\": null,\n        \"logitech-firmware-version\": null,\n        \"hidden-firmwareUpdate\": null,\n        \"logitech-sync-software-version\": null,\n        \"logitech-status\": null,\n        \"logitech-rightsight\": null,\n        \"ConnectedToIoTHub\": \"Online\"\n      },\n      \"Applications\": {\n        \"application-mode-status\": null,\n        \"teams-video-address\": null\n      },\n      \"Hosts-Devices\": {\n        \"Hosts\": null,\n        \"Devices\": null\n      },\n      \"Programs\": {\n        \"Programs-LicensedCount\": 10,\n        \"Programs-SlaveMode\": false,\n        \"Programs-MasterHostname\": \"\",\n        \"Programs-MasterIPID\": \"\",\n        \"Programs-SlaveModeStatus\": \"\",\n        \"Programs-ProgramNumber1-FriendlyName\": \"XIO_Cloud\",\n        \"Programs-ProgramNumber1-Status\": \"Started\",\n        \"Programs-ProgramNumber1-ProgramFileName\": \"Home Test.smw\",\n        \"Programs-ProgramNumber1-SystemName\": \"XIOCloud\",\n        \"Programs-ProgramNumber1-Programmer\": \"AY\",\n        \"Programs-ProgramNumber1-CompiledOn\": \"9/7/2026 8:23 AM\",\n        \"Programs-ProgramNumber1-CompilerVersion\": \"3.03\",\n        \"Programs-ProgramNumber1-SymbolLibraryVersion\": \"1243\",\n        \"Programs-ProgramNumber1-IoLibraryVersion\": \"1243\",\n        \"Programs-ProgramNumber1-IopVersion\": \"4.1.76\",\n        \"Programs-ProgramNumber1-CrestronDatabaseVersion\": \"228.55.001.00\",\n        \"Programs-ProgramNumber1-ProgrammingEnvironment\": \"SIMPL Windows v4.3200.02\",\n        \"Programs-ProgramNumber1-TargetDevice\": \"CP4\",\n        \"Programs-ProgramNumber1-ConfigurationVersion\": \"22\",\n        \"Programs-ProgramNumber1-Include4Version\": \"2.21.274\",\n        \"Programs-ProgramNumber2-FriendlyName\": \"XioCloudSpaceCSharp\",\n        \"Programs-ProgramNumber2-Status\": \"Started\",\n        \"Programs-ProgramNumber2-ProgramFileName\": \"XioCloudSpaceCSharp.dll\",\n        \"Programs-ProgramNumber2-SystemName\": null,\n        \"Programs-ProgramNumber2-Programmer\": null,\n        \"Programs-ProgramNumber2-CompiledOn\": \"10/06/2026 03:26:31\",\n        \"Programs-ProgramNumber2-CompilerVersion\": \"1.0.0.0\",\n        \"Programs-ProgramNumber2-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber2-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber2-IopVersion\": null,\n        \"Programs-ProgramNumber2-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber2-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber2-TargetDevice\": \"CP4\",\n        \"Programs-ProgramNumber2-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber2-Include4Version\": \"2.22.15\",\n        \"Programs-ProgramNumber3-FriendlyName\": null,\n        \"Programs-ProgramNumber3-Status\": \"Stopped\",\n        \"Programs-ProgramNumber3-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber3-SystemName\": null,\n        \"Programs-ProgramNumber3-Programmer\": null,\n        \"Programs-ProgramNumber3-CompiledOn\": null,\n        \"Programs-ProgramNumber3-CompilerVersion\": null,\n        \"Programs-ProgramNumber3-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber3-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber3-IopVersion\": null,\n        \"Programs-ProgramNumber3-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber3-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber3-TargetDevice\": null,\n        \"Programs-ProgramNumber3-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber3-Include4Version\": null,\n        \"Programs-ProgramNumber4-FriendlyName\": null,\n        \"Programs-ProgramNumber4-Status\": \"Stopped\",\n        \"Programs-ProgramNumber4-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber4-SystemName\": null,\n        \"Programs-ProgramNumber4-Programmer\": null,\n        \"Programs-ProgramNumber4-CompiledOn\": null,\n        \"Programs-ProgramNumber4-CompilerVersion\": null,\n        \"Programs-ProgramNumber4-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber4-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber4-IopVersion\": null,\n        \"Programs-ProgramNumber4-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber4-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber4-TargetDevice\": null,\n        \"Programs-ProgramNumber4-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber4-Include4Version\": null,\n        \"Programs-ProgramNumber5-FriendlyName\": null,\n        \"Programs-ProgramNumber5-Status\": \"Stopped\",\n        \"Programs-ProgramNumber5-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber5-SystemName\": null,\n        \"Programs-ProgramNumber5-Programmer\": null,\n        \"Programs-ProgramNumber5-CompiledOn\": null,\n        \"Programs-ProgramNumber5-CompilerVersion\": null,\n        \"Programs-ProgramNumber5-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber5-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber5-IopVersion\": null,\n        \"Programs-ProgramNumber5-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber5-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber5-TargetDevice\": null,\n        \"Programs-ProgramNumber5-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber5-Include4Version\": null,\n        \"Programs-ProgramNumber6-FriendlyName\": null,\n        \"Programs-ProgramNumber6-Status\": \"Stopped\",\n        \"Programs-ProgramNumber6-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber6-SystemName\": null,\n        \"Programs-ProgramNumber6-Programmer\": null,\n        \"Programs-ProgramNumber6-CompiledOn\": null,\n        \"Programs-ProgramNumber6-CompilerVersion\": null,\n        \"Programs-ProgramNumber6-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber6-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber6-IopVersion\": null,\n        \"Programs-ProgramNumber6-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber6-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber6-TargetDevice\": null,\n        \"Programs-ProgramNumber6-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber6-Include4Version\": null,\n        \"Programs-ProgramNumber7-FriendlyName\": null,\n        \"Programs-ProgramNumber7-Status\": \"Stopped\",\n        \"Programs-ProgramNumber7-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber7-SystemName\": null,\n        \"Programs-ProgramNumber7-Programmer\": null,\n        \"Programs-ProgramNumber7-CompiledOn\": null,\n        \"Programs-ProgramNumber7-CompilerVersion\": null,\n        \"Programs-ProgramNumber7-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber7-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber7-IopVersion\": null,\n        \"Programs-ProgramNumber7-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber7-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber7-TargetDevice\": null,\n        \"Programs-ProgramNumber7-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber7-Include4Version\": null,\n        \"Programs-ProgramNumber8-FriendlyName\": null,\n        \"Programs-ProgramNumber8-Status\": \"Stopped\",\n        \"Programs-ProgramNumber8-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber8-SystemName\": null,\n        \"Programs-ProgramNumber8-Programmer\": null,\n        \"Programs-ProgramNumber8-CompiledOn\": null,\n        \"Programs-ProgramNumber8-CompilerVersion\": null,\n        \"Programs-ProgramNumber8-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber8-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber8-IopVersion\": null,\n        \"Programs-ProgramNumber8-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber8-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber8-TargetDevice\": null,\n        \"Programs-ProgramNumber8-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber8-Include4Version\": null,\n        \"Programs-ProgramNumber9-FriendlyName\": null,\n        \"Programs-ProgramNumber9-Status\": \"Stopped\",\n        \"Programs-ProgramNumber9-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber9-SystemName\": null,\n        \"Programs-ProgramNumber9-Programmer\": null,\n        \"Programs-ProgramNumber9-CompiledOn\": null,\n        \"Programs-ProgramNumber9-CompilerVersion\": null,\n        \"Programs-ProgramNumber9-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber9-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber9-IopVersion\": null,\n        \"Programs-ProgramNumber9-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber9-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber9-TargetDevice\": null,\n        \"Programs-ProgramNumber9-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber9-Include4Version\": null,\n        \"Programs-ProgramNumber10-FriendlyName\": null,\n        \"Programs-ProgramNumber10-Status\": \"Stopped\",\n        \"Programs-ProgramNumber10-ProgramFileName\": \"No Program Loaded\",\n        \"Programs-ProgramNumber10-SystemName\": null,\n        \"Programs-ProgramNumber10-Programmer\": null,\n        \"Programs-ProgramNumber10-CompiledOn\": null,\n        \"Programs-ProgramNumber10-CompilerVersion\": null,\n        \"Programs-ProgramNumber10-SymbolLibraryVersion\": null,\n        \"Programs-ProgramNumber10-IoLibraryVersion\": null,\n        \"Programs-ProgramNumber10-IopVersion\": null,\n        \"Programs-ProgramNumber10-CrestronDatabaseVersion\": null,\n        \"Programs-ProgramNumber10-ProgrammingEnvironment\": null,\n        \"Programs-ProgramNumber10-TargetDevice\": null,\n        \"Programs-ProgramNumber10-ConfigurationVersion\": null,\n        \"Programs-ProgramNumber10-Include4Version\": null\n      },\n      \"AVFramework\": {\n        \"avframework\": false,\n        \"avframework-version\": \"7.0400.0002\"\n      }\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Device Status Fields",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"Properties\": [\n        {\n            \"ObjectName\": \"device\",\n            \"PropertyNames\": [\n                \"device-model\",\n                \"device-status\",\n                \"device-name\"\n            ]\n        },\n        {\n            \"ObjectName\": \"Programs\",\n            \"PropertyNames\": [\n                \"Programs-LicensedCount\",\n                \"Programs-ProgramNumber1-Status\",\n                \"Programs-ProgramNumber1-FriendlyName\"\n            ]\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.crestron.io/api/v2/device/accountid/{{vault:accountId}}/cid/{{deviceCid}}/specificstatus",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "device",
+                "accountid",
+                "{{vault:accountId}}",
+                "cid",
+                "{{deviceCid}}",
+                "specificstatus"
+              ]
+            },
+            "description": "This method returns specific device status fields for a chosen device as specified within the request body.\n\nA Properties request parameter must be issued that contains an array of device object and property names as shown in the following example body request.\n\n**NOTE:** The ObjectName value is obtained via the status API (for example, \"device\"/\"Programs\"). The PropertyNames value specifies the property name to query (for example, \"device-model\"/\"Programs-LicensedCount\").\n\n### Variables\n\n`accountId`: **Required**. String that sets the customer account ID that is issued after enabling public API access.\n\n`deviceCid`: **Required**. The CID of the device (for example, \"00-10-7f-9a-f6-7e_-1\")"
+          },
+          "response": [
+            {
+              "name": "Get Device Status Fields",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"Properties\": [\n        {\n            \"ObjectName\": \"device\",\n            \"PropertyNames\": [\n                \"device-model\",\n                \"device-status\",\n                \"device-name\"\n            ]\n        },\n        {\n            \"ObjectName\": \"Programs\",\n            \"PropertyNames\": [\n                \"Programs-LicensedCount\",\n                \"Programs-ProgramNumber1-Status\",\n                \"Programs-ProgramNumber1-FriendlyName\"\n            ]\n        }\n    ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://api.crestron.io/api/v2/device/accountid/{{vault:accountId}}/cid/{{deviceCid}}/specificstatus",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "device",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "cid",
+                    "{{deviceCid}}",
+                    "specificstatus"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": "200"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 16 Oct 2026 21:18:07 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "none"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "strict-transport-security",
+                  "value": "max-age=31536000"
+                },
+                {
+                  "key": "x-ms-middleware-request-id",
+                  "value": "5c3341cb-add7-4e4c-b5e0-1aca55e1d69b"
+                },
+                {
+                  "key": "request-context",
+                  "value": "appId=cid-v1:246ba1ce-02db-489e-8e74-932ff9dbac86"
+                },
+                {
+                  "key": "x-xss-protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "content-security-policy",
+                  "value": "script-src 'self'"
+                },
+                {
+                  "key": "x-frame-options",
+                  "value": "deny"
+                },
+                {
+                  "key": "x-content-type-options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "expect-ct",
+                  "value": "max-age=604800,enforce"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"Devices\": [\n    {\n      \"device\": {\n        \"device-model\": \"CP4\",\n        \"device-name\": \"cp4-home\",\n        \"device-status\": \"Online\"\n      },\n      \"Programs\": {\n        \"Programs-LicensedCount\": 10,\n        \"Programs-ProgramNumber1-FriendlyName\": \"XIO_Cloud\",\n        \"Programs-ProgramNumber1-Status\": \"Started\"\n      }\n    }\n  ],\n  \"MissingDevices\": null,\n  \"Invalid\": {}\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Device Status Fields (Multiple Devices)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"DeviceIds\": [\n        \"{{deviceCid}}\",\n        \"{{deviceCid2}}\"\n    ],\n    \"Properties\": [\n        {\n            \"ObjectName\": \"device\",\n            \"PropertyNames\": [\n                \"device-model\",\n                \"device-status\",\n                \"device-name\"\n            ]\n        },\n        {\n            \"ObjectName\": \"Programs\",\n            \"PropertyNames\": [\n                \"Programs-LicensedCount\",\n                \"Programs-ProgramNumber1-Status\",\n                \"Programs-ProgramNumber1-FriendlyName\"\n            ]\n        }\n    ]\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.crestron.io/api/v2/device/accountid/{{vault:accountId}}/specificstatus",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "device",
+                "accountid",
+                "{{vault:accountId}}",
+                "specificstatus"
+              ]
+            },
+            "description": "This method returns specific device status fields for up to 20 devices as specified in the request body. The DeviceIds parameter must contain an array of unique device CIDs as shown in the following example body request.\n\n**NOTES:**\n\n- If the request contains more than 20 device CIDs, the request will be rejected with a 400 status code (\"Request device limit exceeded, maximum 20 devices can support!\"). If no body is provided with the request, the request will be rejected with a 400 status code (\"Request devices are empty\"). If the request contains any incorrect CIDs, these will be skipped and reported in the MissingDevices response parameter.\n    \n- The ObjectName value is obtained via the status API (for example, \"device\"/\"Programs\"). The PropertyNames value specifies the property name to query (for example, \"device-model\"/\"Programs-LicensedCount\").\n    \n\n### Variables\n\n`accountId`: **Required**. String that sets the customer account ID that is issued after enabling public API access."
+          },
+          "response": [
+            {
+              "name": "Get Device Status Fields (Multiple Devices)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"DeviceIds\": [\n        \"{{deviceCid}}\",\n        \"{{deviceCid2}}\"\n    ],\n    \"Properties\": [\n        {\n            \"ObjectName\": \"device\",\n            \"PropertyNames\": [\n                \"device-model\",\n                \"device-status\",\n                \"device-name\"\n            ]\n        },\n        {\n            \"ObjectName\": \"Programs\",\n            \"PropertyNames\": [\n                \"Programs-LicensedCount\",\n                \"Programs-ProgramNumber1-Status\",\n                \"Programs-ProgramNumber1-FriendlyName\"\n            ]\n        }\n    ]\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://api.crestron.io/api/v2/device/accountid/{{vault:accountId}}/specificstatus",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "device",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "specificstatus"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": "200"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 16 Oct 2026 21:18:11 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "none"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "strict-transport-security",
+                  "value": "max-age=31536000"
+                },
+                {
+                  "key": "x-ms-middleware-request-id",
+                  "value": "10385821-9f32-4ac7-9e3b-fdcbfe97f516"
+                },
+                {
+                  "key": "request-context",
+                  "value": "appId=cid-v1:246ba1ce-02db-489e-8e74-932ff9dbac86"
+                },
+                {
+                  "key": "x-xss-protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "content-security-policy",
+                  "value": "script-src 'self'"
+                },
+                {
+                  "key": "x-frame-options",
+                  "value": "deny"
+                },
+                {
+                  "key": "x-content-type-options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "expect-ct",
+                  "value": "max-age=604800,enforce"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"Devices\": [\n    {\n      \"device\": {\n        \"device-model\": \"TS-1070\",\n        \"device-name\": \"TS70-home\",\n        \"device-status\": \"Online\"\n      },\n      \"Invalid\": {\n        \"Properties:\": [\n          {\n            \"ObjectName\": \"Programs\",\n            \"PropertyNames\": [\n              \"Programs-LicensedCount\",\n              \"Programs-ProgramNumber1-Status\",\n              \"Programs-ProgramNumber1-FriendlyName\"\n            ]\n          }\n        ]\n      }\n    },\n    {\n      \"device\": {\n        \"device-model\": \"CP4\",\n        \"device-name\": \"cp4-home\",\n        \"device-status\": \"Online\"\n      },\n      \"Programs\": {\n        \"Programs-LicensedCount\": 10,\n        \"Programs-ProgramNumber1-FriendlyName\": \"XIO_Cloud\",\n        \"Programs-ProgramNumber1-Status\": \"Started\"\n      }\n    }\n  ],\n  \"MissingDevices\": null\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Device Claims",
+      "item": [
+        {
+          "name": "Claim Device",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "https://api.crestron.io/api/v2/deviceclaim/accountid/{{vault:accountId}}/macaddress/{{macAddress}}/serialnumber/{{serialNumber}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "deviceclaim",
+                "accountid",
+                "{{vault:accountId}}",
+                "macaddress",
+                "{{macAddress}}",
+                "serialnumber",
+                "{{serialNumber}}"
+              ]
+            },
+            "description": "This method claims a device to the XiO Cloud service as specified by the device MAC address and serial number in the URI.\n\n**NOTE**: This API call has a rate limit of 60 requests per minute.\n\n### Variables\n\n`accountid`: **Required**. String that sets the customer account ID that is issued after enabling public API access.  \n`macaddress`: **Required**. String the sets the MAC address of the device to be claimed (such as 00.11.22.aa.bb.cc)  \nserialnumber: **Required**. String that sets the serial number of the device to be claimed (such as 1808JBH01808)"
+          },
+          "response": [
+            {
+              "name": "Claim Device",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "https://api.crestron.io/api/v2/deviceclaim/accountid/{{vault:accountId}}/macaddress/{{macAddress}}/serialnumber/{{serialNumber}}",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "deviceclaim",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "macaddress",
+                    "{{macAddress}}",
+                    "serialnumber",
+                    "{{serialNumber}}"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": "200"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 16 Oct 2026 21:18:17 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "text/plain; charset=utf-8"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "none"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "strict-transport-security",
+                  "value": "max-age=31536000"
+                },
+                {
+                  "key": "x-ms-middleware-request-id",
+                  "value": "02c13ae8-fdd2-4115-b26c-e0c13c017b5f"
+                },
+                {
+                  "key": "request-context",
+                  "value": "appId=cid-v1:bb540103-2e2d-4888-98b1-d22b2b3f7151"
+                },
+                {
+                  "key": "x-xss-protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "content-security-policy",
+                  "value": "script-src 'self'"
+                },
+                {
+                  "key": "x-frame-options",
+                  "value": "deny"
+                },
+                {
+                  "key": "x-content-type-options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "expect-ct",
+                  "value": "max-age=604800,enforce"
+                }
+              ],
+              "cookie": [],
+              "body": "00.10.7f.9c.c8.61: Claim failed because device is already claimed"
+            }
+          ]
+        },
+        {
+          "name": "Claim Devices via CSV Import",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "uploadFiles",
+                  "type": "file",
+                  "description": "CSV file with format: MAC Address,Serial Number,Device Name",
+                  "value": ""
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://api.crestron.io/api/v2/deviceclaim/import/accountid/{{vault:accountId}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "deviceclaim",
+                "import",
+                "accountid",
+                "{{vault:accountId}}"
+              ]
+            },
+            "description": "This method claims multiple devices to the XiO Cloud service from a CSV file.\n\n**NOTE**: This API call has a rate limit of one request per five minutes. A maximum of 200 devices can be imported per CSV file.\n\n### Variables\n\n`accountid`: Required. String that sets the customer account ID that is issued after enabling public API access.\n\n### Sample CSV File Format\n\n`MAC Address,Serial Number,Device Name 00.10.7f.b1.e3.00,1829JBH01829,Mercury01 00.10.7f.b1.e3.01,1829JBH01830,Mercury02 00.10.7f.b1.e3.02,1829JBH01831,Mercury03`"
+          },
+          "response": []
+        },
+        {
+          "name": "Claim Devices via JSON Import",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"MACAddress\": \"00.10.7f.b1.e3.00\",\n    \"SerialNumber\": \"1829JBH01829\",\n    \"DeviceName\": \"Mercury01\"\n  },\n  {\n    \"MACAddress\": \"00.10.7f.b1.e3.01\",\n    \"SerialNumber\": \"1829JBH01830\",\n    \"DeviceName\": \"Mercury02\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.crestron.io/api/v2/deviceclaim/importclaims/accountid/{{vault:accountId}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "deviceclaim",
+                "importclaims",
+                "accountid",
+                "{{vault:accountId}}"
+              ]
+            },
+            "description": "This method claims multiple devices to the XiO Cloud service from a JSON body request. Refer to the example sample body request below.\n\n**NOTE**: This API call has a rate limit of one request per five minutes. A maximum of 200 devices can be imported per request.\n\n`accountid`: Required. String that sets the customer account ID that is issued after enabling public API access."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Groups",
+      "item": [
+        {
+          "name": "Get Groups",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.crestron.io/api/v1/group/accountid/{{vault:accountId}}/groups",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "group",
+                "accountid",
+                "{{vault:accountId}}",
+                "groups"
+              ]
+            },
+            "description": "This method returns all of the account groups for a particular account and specifies whether each group is a room.\n\n### Variables\n\n`accountId`: **Required**. String that sets the customer account ID that is issued after enabling public API access."
+          },
+          "response": [
+            {
+              "name": "Get Groups",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://api.crestron.io/api/v1/group/accountid/{{vault:accountId}}/groups",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "group",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "groups"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": "200"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 16 Oct 2026 21:18:23 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "none"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "strict-transport-security",
+                  "value": "max-age=31536000"
+                },
+                {
+                  "key": "x-ms-middleware-request-id",
+                  "value": "5d6d8544-4d8d-4152-ab5f-7f062d602e51"
+                },
+                {
+                  "key": "request-context",
+                  "value": "appId=cid-v1:246ba1ce-02db-489e-8e74-932ff9dbac86"
+                },
+                {
+                  "key": "x-xss-protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "content-security-policy",
+                  "value": "script-src 'self'"
+                },
+                {
+                  "key": "x-frame-options",
+                  "value": "deny"
+                },
+                {
+                  "key": "x-content-type-options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "expect-ct",
+                  "value": "max-age=604800,enforce"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"IsRoom\": true,\n    \"id\": \"0087d664-27cd-4eca-938c-0125a9c30ee3\",\n    \"Name\": \"OfficeSimplSharp\",\n    \"ParentGroupId\": \"6f06968e-b806-42bc-813c-984122b27e0c\"\n  },\n  {\n    \"IsRoom\": false,\n    \"id\": \"6f06968e-b806-42bc-813c-984122b27e0c\",\n    \"Name\": \"Home\",\n    \"ParentGroupId\": \"b4ca7987-14ad-45de-8058-1778cd8c4b59\"\n  },\n  {\n    \"IsRoom\": false,\n    \"id\": \"b4ca7987-14ad-45de-8058-1778cd8c4b59\",\n    \"Name\": \"Masters\",\n    \"ParentGroupId\": null\n  },\n  {\n    \"IsRoom\": true,\n    \"id\": \"bca30251-4f8e-4a2c-b52f-76805e9fc934\",\n    \"Name\": \"Office\",\n    \"ParentGroupId\": \"6f06968e-b806-42bc-813c-984122b27e0c\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Group Devices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.crestron.io/api/v1/group/accountid/{{vault:accountId}}/groupid/{{groupId}}/devices",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "group",
+                "accountid",
+                "{{vault:accountId}}",
+                "groupid",
+                "{{groupId}}",
+                "devices"
+              ]
+            },
+            "description": "This method returns all of the devices for a particular group.\n\n### Variables\n\n`accountId`: **Required**. String that sets the customer account ID that is issued after enabling public API access.\n\n`gropuId`: **Required**. The ID of the group (for example, \"5c89d11a-7656-4b44-8e02-af5e96072da7\")"
+          },
+          "response": [
+            {
+              "name": "Get Group Devices",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://api.crestron.io/api/v1/group/accountid/{{vault:accountId}}/groupid/{{groupId}}/devices",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "group",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "groupid",
+                    "{{groupId}}",
+                    "devices"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": "200"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 16 Oct 2026 21:35:03 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "none"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "strict-transport-security",
+                  "value": "max-age=31536000"
+                },
+                {
+                  "key": "x-ms-middleware-request-id",
+                  "value": "959c75aa-f171-4f65-a394-a4e3be62d1b6"
+                },
+                {
+                  "key": "request-context",
+                  "value": "appId=cid-v1:bb540103-2e2d-4888-98b1-d22b2b3f7151"
+                },
+                {
+                  "key": "x-xss-protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "content-security-policy",
+                  "value": "script-src 'self'"
+                },
+                {
+                  "key": "x-frame-options",
+                  "value": "deny"
+                },
+                {
+                  "key": "x-content-type-options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "expect-ct",
+                  "value": "max-age=604800,enforce"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"device-cid\": \"c4-42-68-1f-0f-d4_-1\",\n    \"device-accountid\": \"11111111-bbbb-4444-eeeeeeeeeeeeeeeee\",\n    \"device-groupid\": \"bca30251-4f8e-4a2c-b52f-76805e9fc934\",\n    \"device-model\": \"TS-1070\",\n    \"device-category\": \"TouchPanel\",\n    \"device-manufacturer\": \"Crestron\",\n    \"device-id\": \"@E-c442681f0fd4\",\n    \"device-name\": \"TS70-home\",\n    \"device-builddate\": \"Tue May 26 16:15:25 EDT 2026  (600985)\",\n    \"device-key\": \"No SystemKey Server\",\n    \"user-device-name\": \"TS70-home\",\n    \"serial-number\": \"2219JBH19666\",\n    \"device-status\": \"Online\",\n    \"device-ipaddress\": \"192.168.0.111\"\n  },\n  {\n    \"device-cid\": \"00-10-7f-9c-c8-61_-1\",\n    \"device-accountid\": \"11111111-bbbb-4444-eeeeeeeeeeeeeeeee\",\n    \"device-groupid\": \"bca30251-4f8e-4a2c-b52f-76805e9fc934\",\n    \"device-model\": \"CP4\",\n    \"device-category\": \"Control System\",\n    \"device-manufacturer\": \"Crestron\",\n    \"device-id\": \"@E-00107f9cc861\",\n    \"device-name\": \"cp4-home\",\n    \"device-builddate\": \"Jun 18 2026  (602276)\",\n    \"device-key\": \"21132209f219bf1b2d5bb800c8e018fb\",\n    \"user-device-name\": \"cp4-home\",\n    \"serial-number\": \"X140063\",\n    \"device-status\": \"Online\",\n    \"device-ipaddress\": \"192.168.0.120\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Subgroups by Group ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.crestron.io/api/v1/group/accountid/{{vault:accountId}}/groupid/{{groupId}}/subgroups",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "group",
+                "accountid",
+                "{{vault:accountId}}",
+                "groupid",
+                "{{groupId}}",
+                "subgroups"
+              ]
+            },
+            "description": "This method returns all subgroups that are under a parent group and specifies whether each subgroup is a room.Returns all subgroups that are under a parent group and specifies whether each subgroup is a room.\n\n### Variables\n\n`accountId`: Required. String that sets the customer account ID that is issued after enabling public API access.\n\n`gropuId`: Required. The ID of the group (for example, \"5c89d11a-7656-4b44-8e02-af5e96072da7\")"
+          },
+          "response": [
+            {
+              "name": "Get Subgroups by Group ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://api.crestron.io/api/v1/group/accountid/{{vault:accountId}}/groupid/{{groupId}}/subgroups",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "group",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "groupid",
+                    "{{groupId}}",
+                    "subgroups"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": "200"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 16 Oct 2026 21:18:30 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "none"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "strict-transport-security",
+                  "value": "max-age=31536000"
+                },
+                {
+                  "key": "x-ms-middleware-request-id",
+                  "value": "b9756d8c-21a9-404d-900b-4c668c4321ea"
+                },
+                {
+                  "key": "request-context",
+                  "value": "appId=cid-v1:bb540103-2e2d-4888-98b1-d22b2b3f7151"
+                },
+                {
+                  "key": "x-xss-protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "content-security-policy",
+                  "value": "script-src 'self'"
+                },
+                {
+                  "key": "x-frame-options",
+                  "value": "deny"
+                },
+                {
+                  "key": "x-content-type-options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "expect-ct",
+                  "value": "max-age=604800,enforce"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"IsRoom\": false,\n    \"id\": \"6f06968e-b806-42bc-813c-984122b27e0c\",\n    \"Name\": \"Home\",\n    \"ParentGroupId\": \"b4ca7987-14ad-45de-8058-1778cd8c4b59\"\n  },\n  {\n    \"IsRoom\": true,\n    \"id\": \"0087d664-27cd-4eca-938c-0125a9c30ee3\",\n    \"Name\": \"OfficeSimplSharp\",\n    \"ParentGroupId\": \"6f06968e-b806-42bc-813c-984122b27e0c\"\n  },\n  {\n    \"IsRoom\": true,\n    \"id\": \"bca30251-4f8e-4a2c-b52f-76805e9fc934\",\n    \"Name\": \"Office\",\n    \"ParentGroupId\": \"6f06968e-b806-42bc-813c-984122b27e0c\"\n  }\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Rooms",
+      "item": [
+        {
+          "name": "Get Account Rooms",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.crestron.io/api/v2/room/accountid/{{vault:accountId}}/rooms",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "room",
+                "accountid",
+                "{{vault:accountId}}",
+                "rooms"
+              ]
+            },
+            "description": "This method returns all of the rooms for a particular account.\n\n**NOTE**: This API call has a rate limit of one request per two minutes.\n\n### Variables\n\n`accountid`: **Required**. String that sets the customer account ID that is issued after enabling public API access."
+          },
+          "response": [
+            {
+              "name": "Get Account Rooms",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://api.crestron.io/api/v2/room/accountid/{{vault:accountId}}/rooms",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "room",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "rooms"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": "200"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 16 Oct 2026 21:18:35 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "none"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "strict-transport-security",
+                  "value": "max-age=31536000"
+                },
+                {
+                  "key": "x-ms-middleware-request-id",
+                  "value": "8082813f-b7c1-48b8-b046-93e0fd8713a2"
+                },
+                {
+                  "key": "request-context",
+                  "value": "appId=cid-v1:bb540103-2e2d-4888-98b1-d22b2b3f7151"
+                },
+                {
+                  "key": "x-xss-protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "content-security-policy",
+                  "value": "script-src 'self'"
+                },
+                {
+                  "key": "x-frame-options",
+                  "value": "deny"
+                },
+                {
+                  "key": "x-content-type-options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "expect-ct",
+                  "value": "max-age=604800,enforce"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"bca30251-4f8e-4a2c-b52f-76805e9fc934\",\n    \"Name\": \"Office\",\n    \"ParentGroupId\": \"6f06968e-b806-42bc-813c-984122b27e0c\"\n  },\n  {\n    \"id\": \"0087d664-27cd-4eca-938c-0125a9c30ee3\",\n    \"Name\": \"OfficeSimplSharp\",\n    \"ParentGroupId\": \"6f06968e-b806-42bc-813c-984122b27e0c\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Account Rooms by Group ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.crestron.io/api/v2/room/accountid/{{vault:accountId}}/groupid/{{groupId}}/rooms",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "room",
+                "accountid",
+                "{{vault:accountId}}",
+                "groupid",
+                "{{groupId}}",
+                "rooms"
+              ]
+            },
+            "description": "This method returns all of the rooms for a particular group within an account.\n\n**NOTE**: This API call has a rate limit of one request per two minutes.\n\n### Variables\n\n`accountid`: **Required**. String that sets the customer account ID that is issued after enabling public API access.  \n`groupid`: **Required**. The ID of the group (for example, \"5c89d11a-7656-4b44-8e02-af5e96072da7\")"
+          },
+          "response": [
+            {
+              "name": "Get Account Rooms by Group ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://api.crestron.io/api/v2/room/accountid/{{vault:accountId}}/groupid/{{groupId}}/rooms",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "room",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "groupid",
+                    "{{groupId}}",
+                    "rooms"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": ":status",
+                  "value": "200"
+                },
+                {
+                  "key": "date",
+                  "value": "Fri, 16 Oct 2026 21:18:39 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "none"
+                },
+                {
+                  "key": "content-encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "strict-transport-security",
+                  "value": "max-age=31536000"
+                },
+                {
+                  "key": "x-ms-middleware-request-id",
+                  "value": "3016d5d0-52f2-485e-a8b5-935a5d02eecb"
+                },
+                {
+                  "key": "request-context",
+                  "value": "appId=cid-v1:bb540103-2e2d-4888-98b1-d22b2b3f7151"
+                },
+                {
+                  "key": "x-xss-protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "content-security-policy",
+                  "value": "script-src 'self'"
+                },
+                {
+                  "key": "x-frame-options",
+                  "value": "deny"
+                },
+                {
+                  "key": "x-content-type-options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "expect-ct",
+                  "value": "max-age=604800,enforce"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"0087d664-27cd-4eca-938c-0125a9c30ee3\",\n    \"Name\": \"OfficeSimplSharp\",\n    \"ParentGroupId\": \"6f06968e-b806-42bc-813c-984122b27e0c\"\n  },\n  {\n    \"id\": \"bca30251-4f8e-4a2c-b52f-76805e9fc934\",\n    \"Name\": \"Office\",\n    \"ParentGroupId\": \"6f06968e-b806-42bc-813c-984122b27e0c\"\n  }\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "Get Notifications Information",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Parse the JSON response\r\nconst response = pm.response.json();\r\n\r\n// Save the websocket address to an environment variable named 'ws_address'\r\npm.environment.set(\"ws_address\", response.Url);\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.crestron.io/api/v1/notifications/accountid/{{vault:accountId}}/notifications-information",
+              "protocol": "https",
+              "host": [
+                "api",
+                "crestron",
+                "io"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "notifications",
+                "accountid",
+                "{{vault:accountId}}",
+                "notifications-information"
+              ]
+            },
+            "description": "Returns WebSocket connection info for real-time device notifications. The response includes a `Url` field with a WSS endpoint and an `ExpirationInMilliseconds` field. Rate limit: 1 request per 5 minutes (V1)."
+          },
+          "response": [
+            {
+              "name": "Get Notifications Information",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://api.crestron.io/api/v1/notifications/accountid/{{vault:accountId}}/notifications-information",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "crestron",
+                    "io"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "notifications",
+                    "accountid",
+                    "{{vault:accountId}}",
+                    "notifications-information"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"AccountId\": \"11111111-bbbb-4444-eeeeeeeeeeeeeeeee\",\r\n    \"IsNotificationsEnabled\": true,\r\n    \"ErrorMessage\": null,\r\n    \"Url\": \"wss://test-use-webpubsub-device-notifications.webpubsub.azure.com/client/hubs/devicenotifications?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1OTRiMDdjNi1kYWI4LTQyNzItYmUzZS1hYmFkYjFlNzFiMmUiLCJyb2xlIjpbIndlYnB1YnN1Yi5zZW5kVG9Hcm91cCIsIndlYnB1YnN1Yi5qb2luTGVhdmVHcm91cCJdLCJ3ZWJwdWJzdWIuZ3JvdXAiOlsiNTk0YjA3YzYtZGFiOC00MjcyLWJlM2UtYWJhZGIxZTcxYjJlIl0sIm5iZiI6MTY3NzgwNTE3MSwiZXhwIjoxNjc3ODA2OTcxLCJpYXQiOjE2Nzc4MDUxNzEsImF1ZCI6Imh0dHBzOi8vbmUxLXVzZS13ZWJwdWJzdWItZGV2aWNlLW5vdGlmaWNhdGlvbnMud2VicHVic3ViLmF6dXJlLmNvbS9jbGllbnQvaHVicy9kZXZpY2Vub3RpZmljYXRpb25zIn0.Uq9XVpJkhuV \",\r\n    \"ExpirationInMilliseconds\": 1800000\r\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "value",
+        "value": "{{vault:subscriptionKey}}",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "XiO-subscription-key",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

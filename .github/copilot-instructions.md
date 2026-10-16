@@ -14,9 +14,9 @@ Create a `README.md` file that explains how to use the program
 
 ## References
 
-Crestron XIO API Documentation can be found in a postman collenction [here](https://www.postman.com/mine77-5548/crestron-xio-cloud-api/collection/i2lohgb/crestron-xio-cloud-api?utm_source=postman-web-app&sideView=agentMode).
+Device information should be retrieved using the `Get Device Status (v2)` endpoint.
 
-Device information should be retrieve using the `Get Device Status (v2)` endpoint.
+The API is read from a JSON export of the relevant Postman collection, stored at `.github/Crestron XIO Cloud API.postman_collection.json` (the Postman page itself is not machine-readable). Distilled findings are in `docs/api-notes.md`. 
 
 ## Architecture and conventions
 
@@ -43,12 +43,12 @@ Status legend: [ ] pending, [~] in progress, [x] done. Update this list as each 
 
 Assumptions:
 - Single project `XioApiExample` targeting .NET 10, BCL only.
-- Endpoints, auth header and WebSocket details must be confirmed from the Postman collection before coding (step 2).
+- Endpoints, auth header and WebSocket details are taken from the Postman JSON export (see `docs/api-notes.md`).
 - The WebSocket payload only identifies the changed device; status is re-fetched and diffed against the cache.
 
 Steps:
 1. [x] Revise `.github/copilot-instructions.md` with conventions, structure and this plan
-2. [ ] Review the Postman collection and record endpoints, auth and WebSocket details in `docs/api-notes.md`
+2. [ ] Review the Postman collection export found under `.github/Crestron XIO Cloud API.postman_collection.json` 
 3. [ ] Create `README.md` skeleton and `docs/architecture.md`
 4. [ ] Add command-line argument parsing and validation
 5. [ ] Add the XIO API client for account name and device list
@@ -60,14 +60,5 @@ Steps:
 11. [ ] Add tests for the argument parser and differ
 12. [ ] Update README and add ADRs for key decisions
 
-Open questions / risks:
-- Postman details (base URL, auth scheme, WebSocket handshake, payload schema) are unverified.
-- Status JSON shape is unknown; the differ may need to be `JsonElement`-based.
-- WebSocket reconnect and keep-alive behavior is undocumented.
-- Test framework for the test project (suggested: xUnit).
 
-## Change Log
 
-Record each change to these instructions or to the plan here, newest last.
-
-- Initial plan written into the instructions; step 1 completed. Fixed a stray quote in the General agent Instructions section.
