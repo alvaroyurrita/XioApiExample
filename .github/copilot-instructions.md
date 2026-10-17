@@ -57,7 +57,7 @@ Steps:
 2. [x] Review the Postman collection export found under `.github/Crestron XIO Cloud API.postman_collection.json` 
 3. [x] Create `README.md` skeleton and `docs/architecture.md`
 4. [x] Add command-line argument parsing and validation
-5. [ ] Add the XIO API client for account name and device list
+5. [x] Add the XIO API client for account name and device list
 6. [ ] Add the in-memory device status store
 7. [ ] Add the Get Device Status (v2) call and models
 8. [ ] Add the console menu for device and data-group selection
