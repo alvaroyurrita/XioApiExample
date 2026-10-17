@@ -48,6 +48,7 @@ Status legend: [ ] pending, [~] in progress, [x] done. Update this list as each 
 
 Assumptions:
 - Single project `XioApiExample` targeting .NET 10, BCL only.
+- Published as a self-contained single-file executable (win-x64) that runs without `dotnet`.
 - Endpoints, auth header and WebSocket details are taken from the Postman JSON export (see `docs/api-notes.md`).
 - The WebSocket payload only identifies the changed device; status is re-fetched and diffed against the cache.
 
@@ -55,7 +56,7 @@ Steps:
 1. [x] Revise `.github/copilot-instructions.md` with conventions, structure and this plan
 2. [x] Review the Postman collection export found under `.github/Crestron XIO Cloud API.postman_collection.json` 
 3. [x] Create `README.md` skeleton and `docs/architecture.md`
-4. [ ] Add command-line argument parsing and validation
+4. [x] Add command-line argument parsing and validation
 5. [ ] Add the XIO API client for account name and device list
 6. [ ] Add the in-memory device status store
 7. [ ] Add the Get Device Status (v2) call and models
