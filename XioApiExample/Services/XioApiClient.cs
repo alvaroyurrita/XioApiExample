@@ -39,8 +39,14 @@ public sealed class XioApiClient
         return devices ?? [];
     }
 
-    public async Task<DeviceStatus> GetDeviceStatusAsync(string cid, CancellationToken ct)
+    public async Task<NotificationInfo> GetNotificationInfoAsync(CancellationToken ct)
     {
+        var info = await GetAsync<NotificationInfo>(
+            $"v1/notifications/accountid/{_accountId}/notifications-information", ct);
+        return info ?? new NotificationInfo(false, "Empty response.", null, 0);
+    }
+
+    public async Task<DeviceStatus> GetDeviceStatusAsync(string cid, CancellationToken ct)    {
         var root = await GetAsync<System.Text.Json.JsonElement?>(
             $"v2/device/accountid/{_accountId}/devicecid/{Uri.EscapeDataString(cid)}/status", ct);
         return DeviceStatusParser.Parse(cid, root ?? default);

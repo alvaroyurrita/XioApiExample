@@ -31,7 +31,15 @@ try
     var result = await menu.RunAsync(devices, cts.Token);
     if (result == MenuResult.StartMonitoring)
     {
-        Console.WriteLine("Live monitoring is not implemented yet.");
+        var listener = new WebSocketListener(client);
+        await listener.RunAsync(
+            (n, token) =>
+            {
+                Console.WriteLine($"[{DateTime.Now:T}] Change notification: {n.DeviceName ?? n.Cid} ({n.Cid}) at {n.Timestamp}");
+                return Task.CompletedTask;
+            },
+            message => Console.WriteLine(message),
+            cts.Token);
     }
 }
 catch (XioApiException ex)
