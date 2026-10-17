@@ -24,10 +24,14 @@ try
     Console.WriteLine($"Account: {accountName}");
 
     var devices = await client.GetDevicesAsync(cts.Token);
-    Console.WriteLine($"Devices ({devices.Count}):");
-    foreach (var device in devices)
+    Console.WriteLine($"Devices found: {devices.Count}");
+
+    var store = new DeviceStatusStore();
+    var menu = new ConsoleMenu(client, store);
+    var result = await menu.RunAsync(devices, cts.Token);
+    if (result == MenuResult.StartMonitoring)
     {
-        Console.WriteLine($"  {device.DisplayName} [{device.Model}] {device.Status}");
+        Console.WriteLine("Live monitoring is not implemented yet.");
     }
 }
 catch (XioApiException ex)

@@ -60,7 +60,7 @@ Steps:
 5. [x] Add the XIO API client for account name and device list
 6. [x] Add the in-memory device status store
 7. [x] Add the Get Device Status (v2) call and models
-8. [ ] Add the console menu for device and data-group selection
+8. [x] Add the console menu for device and data-group selection
 9. [ ] Add the WebSocket listener for update notifications
 10. [ ] Add the status differ and changed-only output
 11. [ ] Add tests for the argument parser and differ
