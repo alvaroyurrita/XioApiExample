@@ -18,3 +18,14 @@ Single console project `XioApiExample` (.NET 10, BCL only). `Program.cs` stays t
 3. Connect WebSocket; on notification, re-fetch status for the Cid, diff, print changes with device name.
 
 All async code takes a `CancellationToken`. The API key is never printed.
+
+## Tests
+
+XioApiExample.Tests (NUnit) covers ArgumentParser and StatusDiffer.
+
+## Additional services
+
+- DeviceStatusParser: JSON to DeviceStatus.
+- ChangeReporter: on notification, re-fetch, diff, print changes.
+
+See docs/decisions for ADRs.
