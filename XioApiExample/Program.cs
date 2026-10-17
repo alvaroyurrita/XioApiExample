@@ -27,6 +27,10 @@ try
     Console.WriteLine($"Devices found: {devices.Count}");
 
     var store = new DeviceStatusStore();
+    var loaded = await new StatusPrefetcher(client, store)
+        .LoadAllAsync(devices, Console.WriteLine, cts.Token);
+    Console.WriteLine($"Cached status for {loaded}/{devices.Count} devices.");
+
     var menu = new ConsoleMenu(client, store);
     var result = await menu.RunAsync(devices, cts.Token);
     if (result == MenuResult.StartMonitoring)

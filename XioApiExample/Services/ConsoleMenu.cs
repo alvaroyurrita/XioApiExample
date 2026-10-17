@@ -96,6 +96,12 @@ public sealed class ConsoleMenu(XioApiClient client, DeviceStatusStore store, Te
         {
             try
             {
+                if (store.TryGet(device.Cid, out var cached) && cached is not null)
+                {
+                    loaded.Add(cached);
+                    continue;
+                }
+
                 var status = await client.GetDeviceStatusAsync(device.Cid, ct);
                 store.Set(status);
                 loaded.Add(status);
