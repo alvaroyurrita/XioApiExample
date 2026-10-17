@@ -63,7 +63,7 @@ Steps:
 8. [x] Add the console menu for device and data-group selection
 9. [x] Add the WebSocket listener for update notifications
 10. [x] Add the status differ and changed-only output
-11. [ ] Add tests for the argument parser and differ
+11. [x] Add tests for the argument parser and differ
 12. [ ] Update README and add ADRs for key decisions
 
 
