@@ -39,6 +39,13 @@ public sealed class XioApiClient
         return devices ?? [];
     }
 
+    public async Task<DeviceStatus> GetDeviceStatusAsync(string cid, CancellationToken ct)
+    {
+        var root = await GetAsync<System.Text.Json.JsonElement?>(
+            $"v2/device/accountid/{_accountId}/devicecid/{Uri.EscapeDataString(cid)}/status", ct);
+        return DeviceStatusParser.Parse(cid, root ?? default);
+    }
+
     private async Task<T?> GetAsync<T>(string path, CancellationToken ct)
     {
         try
