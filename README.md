@@ -16,6 +16,15 @@ Run tests:
 dotnet test
 ```
 
+## Releases
+
+Pushing a version tag on `main` triggers `.github/workflows/release.yml`. It runs the tests and, only if they pass, publishes single-file executables for win-x64, linux-x64 and osx-arm64 and attaches them to a GitHub Release named after the tag:
+
+```
+git tag v1.2.3
+git push origin v1.2.3
+```
+
 ## Usage
 
 ```
