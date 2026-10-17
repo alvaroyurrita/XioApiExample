@@ -16,7 +16,12 @@ Create a `README.md` file that explains how to use the program
 
 Device information should be retrieved using the `Get Device Status (v2)` endpoint.
 
-The API is read from a JSON export of the relevant Postman collection, stored at `.github/Crestron XIO Cloud API.postman_collection.json` (the Postman page itself is not machine-readable). Distilled findings are in `docs/api-notes.md`. 
+The API is read from a JSON export of the relevant Postman collection, stored at `.github/Crestron XIO Cloud API.postman_collection.json` (the Postman page itself is not machine-readable). 
+
+The websocket connection is described in `.github/websocket documentation.md`
+
+Distilled findings are in `docs/api-notes.md`. 
+
 
 ## Architecture and conventions
 
