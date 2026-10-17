@@ -2,38 +2,46 @@ using XioApiExample.Models;
 
 namespace XioApiExample.Services;
 
-public enum MenuResult
-{
-    Quit,
-    StartMonitoring
-}
-
-public sealed class ConsoleMenu(XioApiClient client, DeviceStatusStore store, TextWriter? output = null, TextReader? input = null)
+public sealed class ConsoleMenu(
+    XioApiClient client,
+    DeviceStatusStore store,
+    Action startWatching,
+    Func<bool> isWatching,
+    TextWriter? output = null,
+    TextReader? input = null)
 {
     private readonly TextWriter _out = output ?? Console.Out;
     private readonly TextReader _in = input ?? Console.In;
 
-    public async Task<MenuResult> RunAsync(IReadOnlyList<DeviceInfo> devices, CancellationToken ct)
-    {
+    public async Task RunAsync(IReadOnlyList<DeviceInfo> devices, CancellationToken ct)    {
         if (devices.Count == 0)
         {
             _out.WriteLine("No devices found in this account.");
-            return MenuResult.Quit;
+            return;
         }
 
         while (!ct.IsCancellationRequested)
         {
             PrintDevices(devices);
-            _out.Write("Select devices (e.g. 1,3), 'a' = all, 'w' = watch for changes, 'q' = quit: ");
+            var watchHint = isWatching() ? "watching for changes" : "'w' = watch for changes";
+            _out.Write($"Select devices (e.g. 1,3), 'a' = all, {watchHint}, 'q' = quit: ");
             var line = _in.ReadLine()?.Trim();
 
             if (line is null || line.Equals("q", StringComparison.OrdinalIgnoreCase))
             {
-                return MenuResult.Quit;
+                return;
             }
             if (line.Equals("w", StringComparison.OrdinalIgnoreCase))
             {
-                return MenuResult.StartMonitoring;
+                if (isWatching())
+                {
+                    _out.WriteLine("Already watching for changes.");
+                }
+                else
+                {
+                    startWatching();
+                }
+                continue;
             }
 
             var selected = ParseSelection(line, devices);
@@ -49,8 +57,6 @@ public sealed class ConsoleMenu(XioApiClient client, DeviceStatusStore store, Te
                 await ShowGroupsAsync(selected, statuses, ct);
             }
         }
-
-        return MenuResult.Quit;
     }
 
     private void PrintDevices(IReadOnlyList<DeviceInfo> devices)

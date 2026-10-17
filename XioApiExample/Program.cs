@@ -31,16 +31,30 @@ try
         .LoadAllAsync(devices, Console.WriteLine, cts.Token);
     Console.WriteLine($"Cached status for {loaded}/{devices.Count} devices.");
 
-    var menu = new ConsoleMenu(client, store);
-    var result = await menu.RunAsync(devices, cts.Token);
-    if (result == MenuResult.StartMonitoring)
+    var listener = new WebSocketListener(client);
+    var reporter = new ChangeReporter(client, store);
+    Task? watchTask = null;
+
+    var menu = new ConsoleMenu(
+        client,
+        store,
+        startWatching: () => watchTask = Task.Run(
+            () => listener.RunAsync(reporter.HandleAsync, message => Console.WriteLine(message), cts.Token),
+            cts.Token),
+        isWatching: () => watchTask is { IsCompleted: false });
+
+    await menu.RunAsync(devices, cts.Token);
+
+    cts.Cancel();
+    if (watchTask is not null)
     {
-        var listener = new WebSocketListener(client);
-        var reporter = new ChangeReporter(client, store);
-        await listener.RunAsync(
-            reporter.HandleAsync,
-            message => Console.WriteLine(message),
-            cts.Token);
+        try
+        {
+            await watchTask;
+        }
+        catch (OperationCanceledException)
+        {
+        }
     }
 }
 catch (XioApiException ex)
