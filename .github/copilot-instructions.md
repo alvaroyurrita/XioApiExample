@@ -53,8 +53,8 @@ Assumptions:
 
 Steps:
 1. [x] Revise `.github/copilot-instructions.md` with conventions, structure and this plan
-2. [ ] Review the Postman collection export found under `.github/Crestron XIO Cloud API.postman_collection.json` 
-3. [ ] Create `README.md` skeleton and `docs/architecture.md`
+2. [x] Review the Postman collection export found under `.github/Crestron XIO Cloud API.postman_collection.json` 
+3. [x] Create `README.md` skeleton and `docs/architecture.md`
 4. [ ] Add command-line argument parsing and validation
 5. [ ] Add the XIO API client for account name and device list
 6. [ ] Add the in-memory device status store
