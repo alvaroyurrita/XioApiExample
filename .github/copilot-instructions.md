@@ -62,7 +62,7 @@ Steps:
 7. [x] Add the Get Device Status (v2) call and models
 8. [x] Add the console menu for device and data-group selection
 9. [x] Add the WebSocket listener for update notifications
-10. [ ] Add the status differ and changed-only output
+10. [x] Add the status differ and changed-only output
 11. [ ] Add tests for the argument parser and differ
 12. [ ] Update README and add ADRs for key decisions
 

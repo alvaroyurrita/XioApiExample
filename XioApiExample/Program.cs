@@ -32,12 +32,9 @@ try
     if (result == MenuResult.StartMonitoring)
     {
         var listener = new WebSocketListener(client);
+        var reporter = new ChangeReporter(client, store);
         await listener.RunAsync(
-            (n, token) =>
-            {
-                Console.WriteLine($"[{DateTime.Now:T}] Change notification: {n.DeviceName ?? n.Cid} ({n.Cid}) at {n.Timestamp}");
-                return Task.CompletedTask;
-            },
+            reporter.HandleAsync,
             message => Console.WriteLine(message),
             cts.Token);
     }
