@@ -28,9 +28,12 @@ try
     Console.WriteLine($"Devices found: {devices.Count}");
 
     var store = new DeviceStatusStore();
-    var loaded = await new StatusPrefetcher(client, store)
-        .LoadAllAsync(devices, Console.WriteLine, cts.Token);
-    Console.WriteLine($"Cached status for {loaded}/{devices.Count} devices.");
+
+    //Do not prefetch status for all deivices. With XIO Instances with more that 5 devices, this will fail
+    //due to the ammount of requests per minute allowed by the API. The user can prefetch status for individual devices from the menu.
+    //var loaded = await new StatusPrefetcher(client, store)
+    //    .LoadAllAsync(devices, Console.WriteLine, cts.Token);
+    //Console.WriteLine($"Cached status for {loaded}/{devices.Count} devices.");
 
     // The menu and listener share the cache: notifications refresh it while the user browses.
     var listener = new WebSocketListener(client);

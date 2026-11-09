@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 # Single-file publish output
 publish/
+
+
+launchSettings.json
