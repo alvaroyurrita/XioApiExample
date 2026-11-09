@@ -5,6 +5,7 @@ namespace XioApiExample.Services;
 
 public sealed class DeviceStatusStore
 {
+    // The WebSocket listener can update status while the menu reads it.
     private readonly ConcurrentDictionary<string, DeviceStatus> _statuses =
         new(StringComparer.OrdinalIgnoreCase);
 

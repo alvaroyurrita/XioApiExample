@@ -11,6 +11,7 @@ public static class DeviceStatusParser
     {
         var groups = new Dictionary<string, IReadOnlyDictionary<string, string?>>(StringComparer.Ordinal);
 
+        // Status groups are JSON objects; ignore other root values and non-object group values.
         if (root.ValueKind == JsonValueKind.Object)
         {
             foreach (var group in root.EnumerateObject())
@@ -51,6 +52,7 @@ public static class DeviceStatusParser
     {
         JsonValueKind.Null or JsonValueKind.Undefined => null,
         JsonValueKind.String => value.GetString(),
+        // Keep numbers, booleans, arrays, and nested objects comparable without losing their JSON shape.
         _ => value.GetRawText()
     };
 }

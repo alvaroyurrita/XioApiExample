@@ -22,6 +22,7 @@ public sealed class StatusPrefetcher(XioApiClient client, DeviceStatusStore stor
             }
             catch (XioApiException ex)
             {
+                // A single unavailable device should not prevent the rest of the cache from loading.
                 onProgress($"  Could not load {device.DisplayName}: {ex.Message}");
             }
         }

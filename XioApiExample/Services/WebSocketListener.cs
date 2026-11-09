@@ -28,6 +28,7 @@ public sealed class WebSocketListener(XioApiClient client)
         }
         catch (JsonException)
         {
+            // Ignore malformed notifications; a later valid message can still be processed.
             return [];
         }
     }
@@ -60,6 +61,7 @@ public sealed class WebSocketListener(XioApiClient client)
                 }
 
                 using var lifetime = CancellationTokenSource.CreateLinkedTokenSource(ct);
+                // Notification URLs expire, so reconnect after the server-provided lifetime.
                 if (info.ExpirationInMilliseconds > 0)
                 {
                     lifetime.CancelAfter(TimeSpan.FromMilliseconds(info.ExpirationInMilliseconds));
@@ -111,6 +113,7 @@ public sealed class WebSocketListener(XioApiClient client)
                     return;
                 }
 
+                // WebSocket frames can split one JSON message across multiple receives.
                 message.Write(buffer, 0, result.Count);
                 if (!result.EndOfMessage)
                 {

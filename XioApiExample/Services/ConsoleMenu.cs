@@ -82,11 +82,13 @@ public sealed class ConsoleMenu(
         var result = new List<DeviceInfo>();
         foreach (var part in line.Split([',', ' '], StringSplitOptions.RemoveEmptyEntries))
         {
+            // Reject the whole selection if any index is invalid rather than using a partial selection.
             if (!int.TryParse(part, out var n) || n < 1 || n > devices.Count)
             {
                 return [];
             }
             var device = devices[n - 1];
+            // Repeated indices should not cause the same device to be fetched or displayed twice.
             if (!result.Contains(device))
             {
                 result.Add(device);

@@ -27,6 +27,7 @@ public static class ArgumentParser
             string name = arg;
             string? value = null;
 
+            // Accept both "--name value" and "--name=value" forms.
             var eq = arg.IndexOf('=');
             if (arg.StartsWith("--", StringComparison.Ordinal) && eq > 0)
             {

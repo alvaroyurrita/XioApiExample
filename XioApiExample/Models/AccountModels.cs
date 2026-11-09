@@ -15,6 +15,7 @@ public sealed record DeviceInfo(
     [property: JsonPropertyName("device-groupid")] string? GroupId,
     [property: JsonPropertyName("device-status")] string? Status)
 {
+    // Prefer the user-assigned label, then the API name, and fall back to the device identifier.
     public string DisplayName =>
         !string.IsNullOrWhiteSpace(UserName) ? UserName :
         !string.IsNullOrWhiteSpace(Name) ? Name : Cid;

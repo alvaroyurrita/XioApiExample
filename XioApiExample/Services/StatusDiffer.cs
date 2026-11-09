@@ -20,6 +20,7 @@ public static class StatusDiffer
             {
                 string? oldValue = null;
                 var existed = oldFields?.TryGetValue(field, out oldValue) ?? false;
+                // A newly reported null value is not a change; an existing field changing to null is.
                 if (!existed ? newValue is not null : !string.Equals(oldValue, newValue, StringComparison.Ordinal))
                 {
                     changes.Add(new StatusChange(group, field, oldValue, newValue));
@@ -29,6 +30,7 @@ public static class StatusDiffer
 
         if (previous is not null)
         {
+            // Report removed fields only when they previously had a value.
             foreach (var (group, oldFields) in previous.Groups)
             {
                 current.Groups.TryGetValue(group, out var newFields);

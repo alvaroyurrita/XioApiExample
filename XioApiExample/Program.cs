@@ -9,6 +9,7 @@ if (!parsed.Success)
 }
 
 using var cts = new CancellationTokenSource();
+// Let Ctrl+C flow through the normal cancellation path so the menu and socket can shut down cleanly.
 Console.CancelKeyPress += (_, e) =>
 {
     e.Cancel = true;
@@ -31,6 +32,7 @@ try
         .LoadAllAsync(devices, Console.WriteLine, cts.Token);
     Console.WriteLine($"Cached status for {loaded}/{devices.Count} devices.");
 
+    // The menu and listener share the cache: notifications refresh it while the user browses.
     var listener = new WebSocketListener(client);
     var reporter = new ChangeReporter(client, store);
     Task? watchTask = null;
